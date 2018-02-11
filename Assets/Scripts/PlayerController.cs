@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     // Constants
-    private float jumpSpeed = 100.0F;
+    private float jumpSpeed = 20.0F;
     private Vector3 gravityVector = new Vector3(0, -8.0F, 0);
 
     // Attributes
@@ -18,26 +18,43 @@ public class PlayerController : MonoBehaviour {
         canDoubleJump = true;
     }
 	
-	void Update () {
+    public float speed = 6.0F;
+    public float gravity = 8.0F;
+    private Vector3 moveDirection = Vector3.zero;
+
+    void Update () {
+
+        if (cc.isGrounded)
+        {
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection *= speed;
+            if (Input.GetKeyDown("up"))
+                moveDirection.y = jumpSpeed;
+
+        }
+        moveDirection.y -= gravity * Time.deltaTime;
+        cc.Move(moveDirection * Time.deltaTime);
+        /*
         Gravity();
-        if (Input.GetKey("up"))
+        if (Input.GetKeyDown("up"))
         {
             Jump();
         }
-        if (Input.GetKey("left"))
+        if (Input.GetKeyDown("left"))
         {
             MoveLeft();
         }
-        if (Input.GetKey("right"))
+        if (Input.GetKeyDown("right"))
         {
             MoveRight();
         }
-        if (Input.GetKey("down"))
+        if (Input.GetKeyDown("down"))
         {
             Duck();
-        }
+        }*/
 
-        
+
 
     }
 
