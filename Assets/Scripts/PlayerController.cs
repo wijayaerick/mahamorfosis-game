@@ -4,90 +4,53 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    // Constants
-    private float jumpSpeed = 20.0F;
-    private Vector3 gravityVector = new Vector3(0, -8.0F, 0);
-
     // Attributes
     private CharacterController cc;
-    private bool canDoubleJump;
+
+    // Moving and Jumping
+    private float jumpSpeed = 10.0F;
+    public float gravity = 12.0F;
+    private Vector3 moveDirection = Vector3.zero;
+    private bool canDoubleJump = true;
+    private float yTemp = 0;
 
     // Use this for initialization
     void Start () {
         cc = GetComponent<CharacterController>();
-        canDoubleJump = true;
     }
-	
-    public float speed = 6.0F;
-    public float gravity = 8.0F;
-    private Vector3 moveDirection = Vector3.zero;
 
     void Update () {
 
+        // Move and Jump
         if (cc.isGrounded)
         {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+            canDoubleJump = true;
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
             moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= speed;
-            if (Input.GetKeyDown("up"))
+            moveDirection *= Globals.player.status.speed;
+            if (Input.GetKeyDown("z"))
                 moveDirection.y = jumpSpeed;
 
+        } else
+        {
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), yTemp, 0);
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection.x *= Globals.player.status.speed;
+            if (canDoubleJump)
+            {
+                if (Input.GetKeyDown("z"))
+                {
+                    moveDirection.y = jumpSpeed;
+                    canDoubleJump = false;
+                }
+            }
         }
         moveDirection.y -= gravity * Time.deltaTime;
+        yTemp = moveDirection.y;
         cc.Move(moveDirection * Time.deltaTime);
-        /*
-        Gravity();
-        if (Input.GetKeyDown("up"))
-        {
-            Jump();
-        }
-        if (Input.GetKeyDown("left"))
-        {
-            MoveLeft();
-        }
-        if (Input.GetKeyDown("right"))
-        {
-            MoveRight();
-        }
-        if (Input.GetKeyDown("down"))
-        {
-            Duck();
-        }*/
-
-
-
+ 
     }
 
-    void Gravity()
-    {
-        cc.Move(gravityVector * Time.deltaTime);
-    }
-
-    void MoveLeft()
-    {
-        cc.Move(new Vector3(-Globals.player.status.speed, 0, 0) * Time.deltaTime);
-    }
-
-    void MoveRight()
-    {
-        cc.Move(new Vector3(Globals.player.status.speed, 0, 0) * Time.deltaTime);
-    }
-
-    void Jump()
-    {
-        Debug.Log(cc.isGrounded);
-        if (cc.isGrounded)
-        {
-            Debug.Log("Player jumps");
-            cc.Move(new Vector3(0, jumpSpeed, 0) * Time.deltaTime);
-
-        }
-    }
-
-    void Duck()
-    {
-
-    }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
