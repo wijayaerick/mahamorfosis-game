@@ -1,60 +1,121 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
 
 public class PlayerController : MonoBehaviour {
 
-    // Attributes
-    private CharacterController cc;
+    public float maxSpeed = 3f;
+    public float speed = 50f;
+    public float jumpPower = 250f;
+    public bool grounded;
+    public bool canDoubleJump;
+    public int curHealth = 5;
 
-    // Moving and Jumping
-    private float jumpSpeed = 10.0F;
-    public float gravity = 12.0F;
-    private Vector3 moveDirection = Vector3.zero;
-    private bool canDoubleJump = true;
-    private float yTemp = 0;
+    private float inputAxisHorizontal;
+    private Rigidbody2D rb;
+    private Animator anim;
 
-    // Use this for initialization
-    void Start () {
-        cc = GetComponent<CharacterController>();
-    }
-
-    void Update () {
-
-        // Move and Jump
-        if (cc.isGrounded)
+    void Start ()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        anim = gameObject.GetComponent<Animator>();
+	}
+	
+	void Update ()
+    {
+        anim.SetBool("grounded", grounded);
+        anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+        if (inputAxisHorizontal < -0.1f)
         {
-            canDoubleJump = true;
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= Globals.player.status.speed;
-            if (Input.GetKeyDown("z"))
-                moveDirection.y = jumpSpeed;
-
-        } else
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        if (inputAxisHorizontal > 0.1f)
         {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), yTemp, 0);
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection.x *= Globals.player.status.speed;
-            if (canDoubleJump)
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (grounded)
             {
-                if (Input.GetKeyDown("z"))
-                {
-                    moveDirection.y = jumpSpeed;
-                    canDoubleJump = false;
-                }
+                rb.AddForce(Vector2.up * jumpPower);
+            }
+            else if (canDoubleJump)
+            {
+                canDoubleJump = false;
+                rb.angularVelocity = 0f;
+                rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+                rb.AddForce(Vector2.up * jumpPower / 1.2f);
             }
         }
-        moveDirection.y -= gravity * Time.deltaTime;
-        yTemp = moveDirection.y;
-        cc.Move(moveDirection * Time.deltaTime);
- 
     }
 
-
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    void FixedUpdate()
     {
-        // Debug.Log("Player collides plaform");
-        
+        Vector3 easeVelocity = rb.velocity;
+        easeVelocity.z = 0.0f;
+        easeVelocity.x *= 0.75f;
+
+
+        inputAxisHorizontal = Input.GetAxis("Horizontal");
+
+        // Friction and set double jump
+        if (grounded)
+        {
+            rb.velocity = easeVelocity;
+            canDoubleJump = true;
+        }
+
+        // Moving
+        rb.AddForce(Vector2.right * speed * inputAxisHorizontal);
+        if (rb.velocity.x > maxSpeed)
+        {
+            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+        }
+        if (rb.velocity.x < -maxSpeed)
+        {
+            rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+        }
     }
+
+    public void Damage(int dmg)
+    {
+        gameObject.GetComponent<Animation>().Play("Player_Damaged");
+        if (dmg > curHealth)
+        {
+            Die();
+        }
+        else
+        {
+            curHealth -= dmg;
+        }
+    }
+
+    public void Die()
+    {
+        Application.LoadLevel(Application.loadedLevel);
+    }
+
+    public IEnumerator Knockback(float knockDur, Vector2 knockDir)
+    {
+        float timer = 0f;
+
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        while (knockDur > timer)
+        {
+            timer += Time.deltaTime;
+            rb.AddForce(new Vector3(transform.position.x * knockDir.x, transform.position.y * knockDir.y, transform.position.z));
+        }
+        yield return 0;
+    }
+
+    void OnTriggerEnter2D (Collider2D col)
+    {
+        if (col.CompareTag("Coin"))
+        {
+            Destroy(col.gameObject);
+        }
+    }
+
+
 }
