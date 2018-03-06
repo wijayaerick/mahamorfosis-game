@@ -358,8 +358,8 @@ MonoBehaviour:
   maxHealth: 60
   distance: 0
   wakeRange: 8
-  shootInterval: 0.5
-  bulletSpeed: 6
+  shootInterval: 0.7
+  bulletSpeed: 15
   bulletTimer: 0
   awake: 0
   lookingRight: 1

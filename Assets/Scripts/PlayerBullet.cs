@@ -32,6 +32,10 @@ public class PlayerBullet : MonoBehaviour
             {
                 col.GetComponentInParent<TurretController>().Damage(20);
             }
+            else if (col.CompareTag("Boss"))
+            {
+                col.GetComponentInParent<BossController>().Damage(20);
+            }
             Destroy(gameObject);
         }
     }

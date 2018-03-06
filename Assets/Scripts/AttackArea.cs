@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour {
 
-    public TurretController tc;
+    private TurretController tc;
+    private BossController bc;
     public bool isLeft = false;
+    public bool isBoss = false;
 
     void Awake ()
     {
-        tc = GetComponentInParent<TurretController>();
+        if (isBoss)
+        {
+            bc = GetComponentInParent<BossController>();
+        }
+        else
+        {
+            tc = GetComponentInParent<TurretController>();
+        }
     }
 
     void OnTriggerStay2D (Collider2D col)
     {
 		if (col.CompareTag("Player"))
         {
-            tc.Attack(!isLeft);
+            if (isBoss)
+            {
+                bc.Attack(!isLeft);
+            }
+            else
+            {
+                tc.Attack(!isLeft);
+            }
         }
 	}
 	

@@ -101,9 +101,27 @@ public class PlayerController : MonoBehaviour {
 
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
+
         while (knockDur > timer)
         {
             timer += Time.deltaTime;
+            if (transform.position.x >= 0 && knockDir.x < 0)
+            {
+                knockDir.x *= -1;
+            } else if (transform.position.x < 0)
+            {
+                knockDir.x *= -1;
+            }
+
+            if (transform.position.y >= 0 && knockDir.y < 0)
+            {
+                knockDir.y *= -1;
+            }
+            else if (transform.position.y < 0)
+            {
+                knockDir.y *= -1;
+            }
+
             rb.AddForce(new Vector3(transform.position.x * knockDir.x, transform.position.y * knockDir.y, transform.position.z));
         }
         yield return 0;
@@ -115,6 +133,7 @@ public class PlayerController : MonoBehaviour {
         {
             Destroy(col.gameObject);
         }
+
     }
 
 

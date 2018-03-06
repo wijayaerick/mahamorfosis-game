@@ -95,4 +95,9 @@ public class TurretController : MonoBehaviour {
         curHealth -= damage;
         GetComponent<Animation>().Play("Player_Damaged");
     }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+
+    }
 }

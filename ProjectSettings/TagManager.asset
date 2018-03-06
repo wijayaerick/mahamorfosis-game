@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Coin
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -15,6 +16,10 @@ TagManager:
   - UI
   - 
   - 
+  - BG_Layer0
+  - BG_Layer1
+  - BG_Layer3
+  - BG_Layer4
   - 
   - 
   - 
@@ -23,11 +28,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - UI
   - 
   - 
   - 

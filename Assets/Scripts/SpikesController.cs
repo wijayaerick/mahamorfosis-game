@@ -14,7 +14,7 @@ public class SpikesController : MonoBehaviour {
 		if (col.CompareTag("Player"))
         {
             pc.Damage(3);
-            StartCoroutine(pc.Knockback(0.02f, new Vector2(100, 350)));
+            StartCoroutine(pc.Knockback(0.02f, new Vector2(0, 150)));
         }
 	}
 }

@@ -7,10 +7,12 @@ public class BulletController : MonoBehaviour {
     public float maxDistance = 50f;
     private float distanceTravelled = 0f;
     private Vector2 lastPosition;
+    private Rigidbody2D rb;
 
     void Start ()
     {
         lastPosition = transform.position;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -31,6 +33,7 @@ public class BulletController : MonoBehaviour {
             if (col.CompareTag("Player"))
             {
                 col.GetComponent<PlayerController>().Damage(1);
+                StartCoroutine(col.GetComponent<PlayerController>().Knockback(0.02f, rb.velocity*10));
             }
             Destroy(gameObject);
         }
