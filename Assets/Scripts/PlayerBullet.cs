@@ -26,17 +26,15 @@ public class PlayerBullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D (Collider2D col)
     {
-        if (!col.isTrigger)
-        {
-            if (col.CompareTag("Enemy"))
+        if (col.CompareTag("Player") || col.CompareTag("Bullet")){
+            // Do Nothing
+        }
+        else {
+            if (col.CompareTag("Enemy") || col.CompareTag("Boss"))
             {
-                col.GetComponentInParent<TurretController>().Damage(player.damage);
-            }
-            else if (col.CompareTag("Boss"))
-            {
-                col.GetComponentInParent<BossController>().Damage(player.damage);
+                col.SendMessage("Damage", player.damage);
             }
             Destroy(gameObject);
         }

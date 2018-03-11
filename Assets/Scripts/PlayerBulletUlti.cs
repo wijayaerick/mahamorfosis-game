@@ -27,18 +27,11 @@ public class PlayerBulletUlti : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D (Collider2D col)
     {
-        if (!col.isTrigger)
+        if (col.CompareTag("Enemy") || col.CompareTag("Boss"))
         {
-            if (col.CompareTag("Enemy"))
-            {
-                col.GetComponentInParent<TurretController>().Damage(player.damageUlti);
-            }
-            else if (col.CompareTag("Boss"))
-            {
-                col.GetComponentInParent<BossController>().Damage(player.damageUlti);
-            }
+            col.SendMessage("Damage", player.damageUlti);
         }
     }
 }

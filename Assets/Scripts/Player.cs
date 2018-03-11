@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     public float jumpPower = 380f;
     public bool grounded;
     private bool canDoubleJump;
+    private bool canMove = true;
     
     // Health
     public int maxHealth = 5;

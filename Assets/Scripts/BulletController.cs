@@ -28,14 +28,18 @@ public class BulletController : MonoBehaviour {
     // Update is called once per frame
     void OnTriggerStay2D (Collider2D col)
     {
-		if (!col.isTrigger)
-        {
-            if (col.CompareTag("Player"))
+        if (col.CompareTag("Enemy") || col.CompareTag("Boss") || col.CompareTag("Bullet")){
+
+        } else {
+            if (!col.isTrigger)
             {
-                col.GetComponent<Player>().Damage(1);
-                StartCoroutine(col.GetComponent<Player>().Knockback(0.02f, rb.velocity*10));
+                if (col.CompareTag("Player"))
+                {
+                    col.GetComponent<Player>().Damage(1);
+                    StartCoroutine(col.GetComponent<Player>().Knockback(0.02f, rb.velocity*10));
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
 	}
 }

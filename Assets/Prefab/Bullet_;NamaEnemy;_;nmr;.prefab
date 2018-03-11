@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50318921115018830}
   - component: {fileID: 114804703883230590}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet_;NamaEnemy;_;nmr;
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c29130edf44dfe74384131c1cfbafcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistance: 50
 --- !u!212 &212540554581917502
 SpriteRenderer:
   m_ObjectHideFlags: 1

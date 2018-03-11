@@ -11,27 +11,50 @@ abstract public class Enemy : MonoBehaviour {
     public float distance = 0f;
     public float wakeRange = 5f;
 
-    public bool awake = false;
-	private Player player;
+    protected bool awake = false;
+	protected Player player;
 
     public Animator anim;
 
+	public bool canShoot;
+	public float shootRange = 3.5f;
+	public float shootInterval = 0.5f;
+    public float bulletSpeed = 10f;
+	public float bulletMaxDistance = 30f;
+    protected float bulletTimer;
+	public GameObject bullet;
+	protected Transform shootPoint;
 
-    void Awake ()
+    public virtual void Awake ()
     {
         anim = GetComponent<Animator>();
     }
 
-	void Start ()
+	public virtual void Start ()
     {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		shootPoint = GetComponentInChildren<Transform>();
         curHealth = maxHealth;
 	}
 	
-	void Update ()
+	public virtual void Update ()
     {
         anim.SetBool("awake", awake);
         RangeCheck();
+
+		if (distance < shootRange && canShoot)
+        {
+            Attack();
+        }
+
+		if (player.transform.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
 
         if (curHealth <= 0)
         {
@@ -40,7 +63,7 @@ abstract public class Enemy : MonoBehaviour {
 
 	}
 
-    void RangeCheck()
+    public void RangeCheck()
     {
         distance = Vector3.Distance(transform.position, player.transform.position);
         if (distance < wakeRange)
@@ -53,7 +76,20 @@ abstract public class Enemy : MonoBehaviour {
         }
     }
 
-    abstract public void Attack();
+    public virtual void Attack()
+	{
+		bulletTimer += Time.deltaTime;
+        if (bulletTimer >= shootInterval)
+        {
+            Vector2 direction = player.transform.position - transform.position;
+            direction.Normalize();
+
+            GameObject bulletClone;
+            bulletClone = Instantiate(bullet, shootPoint.transform.position, shootPoint.transform.rotation);
+            bulletClone.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+            bulletTimer = 0;
+        }
+	}
 
     public virtual void Damage (int damage)
     {
@@ -61,12 +97,19 @@ abstract public class Enemy : MonoBehaviour {
         GetComponent<Animation>().Play("Player_Damaged");
     }
 
-    void OnColliderEnter2D(Collider2D col)
+    public virtual void OnCollisionEnter2D (Collision2D col)
     {
 		if (col.gameObject.tag == "Player")
 		{
 			player.Damage(damage);
-			StartCoroutine(player.Knockback(0.02f, new Vector2(100, 100)));
+			
+
+			if (player.transform.localScale.x > 0) {
+				StartCoroutine(player.Knockback(0.02f, new Vector2(-200, 200)));
+			}
+			else {
+				StartCoroutine(player.Knockback(0.02f, new Vector2(200, 200)));
+			}
 		}
     }
 }
