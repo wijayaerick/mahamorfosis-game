@@ -2,16 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class Player : MonoBehaviour {
 
+    // Movement
     public float maxSpeed = 3f;
-    public float speed = 50f;
-    public float jumpPower = 250f;
+    public float speed = 60f;
+    public float jumpPower = 380f;
     public bool grounded;
-    public bool canDoubleJump;
-    public int curHealth = 5;
+    private bool canDoubleJump;
+    
+    // Health
+    public int maxHealth = 5;
+    public int curHealth;
 
-    private float inputAxisHorizontal;
+    // Shoot
+    public int damage = 20;
+    public int damageUlti = 120;
+    public int maxUlti = 100;
+    public int curUlti = 0;
+
+    // Shoot Direction
+    private bool lookingUp = false;
+    private bool duck = false;
+
+    private float inputHorizontal;
+    private float inputVertical;
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -19,20 +34,43 @@ public class PlayerController : MonoBehaviour {
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
+        curHealth = maxHealth;
 	}
 	
 	void Update ()
     {
+        // Update animator
         anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
-        if (inputAxisHorizontal < -0.1f)
+
+        // Handle Player Orientation (Left/Right)
+        if (inputHorizontal < -0.1f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        if (inputAxisHorizontal > 0.1f)
+        if (inputHorizontal > 0.1f)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
+
+        // Handle Upper Shoot Direction and Duck
+        if (inputVertical < -0.1f && grounded)
+        {
+            duck = true;
+            lookingUp = false;
+        }
+        else if (inputVertical > 0.1f)
+        {
+            duck = false;
+            lookingUp = true;
+        }
+        else
+        {
+            duck = false;
+            lookingUp = false;
+        }
+
+        // Handle Jumping
         if (Input.GetButtonDown("Jump"))
         {
             if (grounded)
@@ -44,19 +82,20 @@ public class PlayerController : MonoBehaviour {
                 canDoubleJump = false;
                 rb.angularVelocity = 0f;
                 rb.velocity = new Vector2(rb.velocity.x, 0.0f);
-                rb.AddForce(Vector2.up * jumpPower / 1.2f);
+                rb.AddForce(Vector2.up * jumpPower / 1.15f);
             }
         }
     }
 
     void FixedUpdate()
     {
+        // Fake Friction
         Vector3 easeVelocity = rb.velocity;
         easeVelocity.z = 0.0f;
         easeVelocity.x *= 0.75f;
 
-
-        inputAxisHorizontal = Input.GetAxis("Horizontal");
+        inputHorizontal = Input.GetAxis("Horizontal");
+        inputVertical = Input.GetAxis("Vertical");
 
         // Friction and set double jump
         if (grounded)
@@ -66,7 +105,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Moving
-        rb.AddForce(Vector2.right * speed * inputAxisHorizontal);
+        rb.AddForce(Vector2.right * speed * inputHorizontal);
         if (rb.velocity.x > maxSpeed)
         {
             rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
@@ -134,6 +173,16 @@ public class PlayerController : MonoBehaviour {
             Destroy(col.gameObject);
         }
 
+    }
+
+    public bool isLookingUp()
+    {
+        return lookingUp;
+    }
+
+    public bool isDucking()
+    {
+        return duck;
     }
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Door : MonoBehaviour {
+public class Warp : MonoBehaviour {
 
     public Vector3 newPosition;
 
@@ -16,7 +16,10 @@ public class Door : MonoBehaviour {
     {
         if (col.CompareTag("Player"))
         {
-            col.transform.position = newPosition;
+            if (Input.GetButtonDown("Interact"))
+            {
+                col.transform.position = newPosition;
+            }
         }
     }
 
@@ -24,7 +27,10 @@ public class Door : MonoBehaviour {
     {
         if (col.CompareTag("Player"))
         {
-            col.transform.position = newPosition;
+            if (Input.GetButtonDown("Interact"))
+            {
+                col.transform.position = newPosition;
+            }
         }
     }
 

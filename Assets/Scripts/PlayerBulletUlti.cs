@@ -1,13 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class PlayerBulletUlti : MonoBehaviour
 {
-    public float maxDistance = 7f;
+    public float maxDistance = 10f;
     private float distanceTravelled = 0f;
     private Vector2 lastPosition;
     private Player player;
+    
 
     // Use this for initialization
     void Start()
@@ -32,13 +33,12 @@ public class PlayerBullet : MonoBehaviour
         {
             if (col.CompareTag("Enemy"))
             {
-                col.GetComponentInParent<TurretController>().Damage(player.damage);
+                col.GetComponentInParent<TurretController>().Damage(player.damageUlti);
             }
             else if (col.CompareTag("Boss"))
             {
-                col.GetComponentInParent<BossController>().Damage(player.damage);
+                col.GetComponentInParent<BossController>().Damage(player.damageUlti);
             }
-            Destroy(gameObject);
         }
     }
 }

@@ -6,26 +6,40 @@ public class PlayerAttack : MonoBehaviour {
 
     private bool attacking = false;
     private float attackTimer = 0;
-    private float attackCd = 0.3f;
+    public float attackCd = 0.7f;
 
-    public GameObject bullet;
-    public Transform shootPoint;
+    public GameObject bulletNormal;
+    public GameObject bulletUlti;
+    public Transform shootPointFront;
+    public Transform shootPointUp;
+    public Transform shootPointDuck;
+    private Transform shootPoint;
     public float bulletSpeed = 10f;
+    private bool isHorizontal;
 
     private Animator anim;
+    private Player player;
 
 	void Awake ()
     {
+        player = GetComponent<Player>();
         anim = GetComponent<Animator>();
 	}
 	
 	void Update ()
     {
-		if (Input.GetKeyDown("x") && !attacking)
+		if (Input.GetButton("Shoot") && !attacking) // Use Input.GetButtonDown for single press (not hold)
         {
             attacking = true;
             attackTimer = attackCd;
-            Attack();
+            Shoot();
+        }
+
+        if (Input.GetButton("Ulti") && !attacking)
+        {
+            attacking = true;
+            attackTimer = attackCd;
+            Ulti();
         }
 
         if (attacking)
@@ -43,13 +57,67 @@ public class PlayerAttack : MonoBehaviour {
         anim.SetBool("attacking", attacking);
 	}
 
-    public void Attack()
+    public void Shoot()
     {
-         Vector2 direction = shootPoint.position - transform.position;
-         direction.Normalize();
+        if (player.isLookingUp() && !player.isDucking())
+        {
+            shootPoint = shootPointUp;
+            isHorizontal = false;
+        } 
+        else if (!player.isLookingUp() && player.isDucking())
+        {
+            shootPoint = shootPointDuck;
+            isHorizontal = true;
+        }
+        else {
+            shootPoint = shootPointFront;
+            isHorizontal = true;
+        }
 
-         GameObject bulletClone;
-         bulletClone = Instantiate(bullet, shootPoint.transform.position, shootPoint.transform.rotation);
-         bulletClone.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+        Vector2 direction = shootPoint.position - transform.position;
+        if (isHorizontal)
+        {
+            direction.y = 0;
+        }
+        else {
+            direction.x = 0;
+        }
+        direction.Normalize();
+
+        GameObject bulletClone;
+        bulletClone = Instantiate(bulletNormal, shootPoint.transform.position, shootPoint.transform.rotation);
+        bulletClone.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+    }
+
+    public void Ulti()
+    {
+        if (player.isLookingUp() && !player.isDucking())
+        {
+            shootPoint = shootPointUp;
+            isHorizontal = false;
+        } 
+        else if (!player.isLookingUp() && player.isDucking())
+        {
+            shootPoint = shootPointDuck;
+            isHorizontal = true;
+        }
+        else {
+            shootPoint = shootPointFront;
+            isHorizontal = true;
+        }
+
+        Vector2 direction = shootPoint.position - transform.position;
+        if (isHorizontal)
+        {
+            direction.y = 0;
+        }
+        else {
+            direction.x = 0;
+        }
+        direction.Normalize();
+
+        GameObject bulletClone;
+        bulletClone = Instantiate(bulletUlti, shootPoint.transform.position, shootPoint.transform.rotation);
+        bulletClone.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
     }
 }

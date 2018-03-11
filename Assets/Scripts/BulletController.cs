@@ -32,8 +32,8 @@ public class BulletController : MonoBehaviour {
         {
             if (col.CompareTag("Player"))
             {
-                col.GetComponent<PlayerController>().Damage(1);
-                StartCoroutine(col.GetComponent<PlayerController>().Knockback(0.02f, rb.velocity*10));
+                col.GetComponent<Player>().Damage(1);
+                StartCoroutine(col.GetComponent<Player>().Knockback(0.02f, rb.velocity*10));
             }
             Destroy(gameObject);
         }

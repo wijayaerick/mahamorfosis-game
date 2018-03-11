@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour {
 
-    private PlayerController pc;
+    private Player player;
 
     void Start()
     {
-        pc = gameObject.GetComponentInParent<PlayerController>();
-
+        player = gameObject.GetComponentInParent<Player>();
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (!col.isTrigger)
         {
-            pc.grounded = true;
+            player.grounded = true;
         }
     }
 
@@ -24,13 +23,13 @@ public class GroundCheck : MonoBehaviour {
     {
         if (!col.isTrigger)
         {
-            pc.grounded = true;
+            player.grounded = true;
         }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        pc.grounded = false;
+        player.grounded = false;
     }
 
 }
