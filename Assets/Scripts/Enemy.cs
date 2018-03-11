@@ -49,16 +49,17 @@ abstract public class Enemy : MonoBehaviour {
 
 		if (player.transform.position.x > transform.position.x)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
         else
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
 
         if (curHealth <= 0)
         {
             Destroy(gameObject);
+            Die();
         }
 
 	}
@@ -111,5 +112,10 @@ abstract public class Enemy : MonoBehaviour {
 				StartCoroutine(player.Knockback(0.02f, new Vector2(200, 200)));
 			}
 		}
+    }
+
+    public virtual void Die()
+    {
+        
     }
 }

@@ -50,4 +50,12 @@ public class Pause : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    public void PauseGame(){
+        paused = true;
+    }
+
+    public bool isPaused(){
+        return paused;
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
 
-    private bool attacking = false;
+    public bool attacking = false;
     private float attackTimer = 0;
     public float attackCd = 0.7f;
 
@@ -30,15 +30,11 @@ public class PlayerAttack : MonoBehaviour {
     {
 		if (Input.GetButton("Shoot") && !attacking) // Use Input.GetButtonDown for single press (not hold)
         {
-            attacking = true;
-            attackTimer = attackCd;
             Shoot();
         }
 
         if (Input.GetButton("Ulti") && !attacking)
         {
-            attacking = true;
-            attackTimer = attackCd;
             Ulti();
         }
 
@@ -59,6 +55,10 @@ public class PlayerAttack : MonoBehaviour {
 
     public void Shoot()
     {
+        // Dua baris dibawah jangan diapus/dipindahin
+        attacking = true;
+        attackTimer = attackCd;
+
         if (player.isLookingUp() && !player.isDucking())
         {
             shootPoint = shootPointUp;
@@ -91,6 +91,10 @@ public class PlayerAttack : MonoBehaviour {
 
     public void Ulti()
     {
+        // Dua baris dibawah jangan diapus/dipindahin
+        attacking = true;
+        attackTimer = attackCd;
+
         if (player.isLookingUp() && !player.isDucking())
         {
             shootPoint = shootPointUp;

@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     public float jumpPower = 380f;
     public bool grounded;
     private bool canDoubleJump;
-    private bool canMove = true;
+    private bool isMobile = false;
     
     // Health
     public int maxHealth = 5;
@@ -26,13 +26,22 @@ public class Player : MonoBehaviour {
     private bool lookingUp = false;
     private bool duck = false;
 
-    private float inputHorizontal;
-    private float inputVertical;
+    public float inputHorizontal;
+    public float inputVertical;
     private Rigidbody2D rb;
     private Animator anim;
 
     void Start ()
     {
+		#if UNITY_IOS
+			isMobile = true;
+		#elif UNITY_ANDROID
+			isMobile = true;
+		#elif UNITY_EDITOR
+			isMobile = false;
+		#else
+			isMobile = false;
+		#endif
         rb = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
         curHealth = maxHealth;
@@ -74,17 +83,7 @@ public class Player : MonoBehaviour {
         // Handle Jumping
         if (Input.GetButtonDown("Jump"))
         {
-            if (grounded)
-            {
-                rb.AddForce(Vector2.up * jumpPower);
-            }
-            else if (canDoubleJump)
-            {
-                canDoubleJump = false;
-                rb.angularVelocity = 0f;
-                rb.velocity = new Vector2(rb.velocity.x, 0.0f);
-                rb.AddForce(Vector2.up * jumpPower / 1.15f);
-            }
+            Jump();
         }
     }
 
@@ -95,8 +94,10 @@ public class Player : MonoBehaviour {
         easeVelocity.z = 0.0f;
         easeVelocity.x *= 0.75f;
 
-        inputHorizontal = Input.GetAxis("Horizontal");
-        inputVertical = Input.GetAxis("Vertical");
+        if (!isMobile) {
+            inputHorizontal = Input.GetAxis("Horizontal");
+            inputVertical = Input.GetAxis("Vertical");
+        }
 
         // Friction and set double jump
         if (grounded)
@@ -184,6 +185,21 @@ public class Player : MonoBehaviour {
     public bool isDucking()
     {
         return duck;
+    }
+
+    public void Jump()
+    {
+        if (grounded)
+        {
+            rb.AddForce(Vector2.up * jumpPower);
+        }
+        else if (canDoubleJump)
+        {
+            canDoubleJump = false;
+            rb.angularVelocity = 0f;
+            rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+            rb.AddForce(Vector2.up * jumpPower / 1.15f);
+        }
     }
 
 
