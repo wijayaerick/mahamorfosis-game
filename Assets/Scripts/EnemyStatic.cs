@@ -17,7 +17,7 @@ public class EnemyStatic : Enemy {
 	public override void Update ()
     {
         base.Update();
-	}
+    }
 
 	public override void Attack() 
 	{
