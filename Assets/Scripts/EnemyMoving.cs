@@ -5,12 +5,33 @@ using UnityEngine;
 public class EnemyMoving : Enemy {
 
 	// Use this for initialization
-	void Start () {
-		
+    public override void Awake ()
+    {
+        base.Awake();
+    }
+
+	public override void Start ()
+    {
+		base.Start();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	public override void Update ()
+    {
+        base.Update();
 	}
+
+	public override void Attack() 
+	{
+		base.Attack();
+	}
+
+	public override void OnCollisionEnter2D (Collision2D col)
+	{
+		base.OnCollisionEnter2D(col);
+	}
+
+	public override void Die()
+    {
+        base.Die();
+    }
 }
