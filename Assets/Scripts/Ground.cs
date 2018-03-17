@@ -6,18 +6,24 @@ public class Ground : MonoBehaviour {
 
 	private Collider2D col;
 	private Rigidbody2D rb;
+	
 	public bool canMove = false;
-	public enum GroundMovementType {LINEAR, LINEAR_BACK, CIRCLE};
+	public enum GroundMovementType {LINEAR, LINEAR_BACK, LINEAR_CIRCULAR, CIRCLE};
 	public GroundMovementType movementType;
 	public float speed = 1;	
-	public Vector2[] movementSet;
-	public float radius = 5f;
+	public Vector3[] movementSet;
+	public Vector2 center;
+	private bool ascending = true;
+	private int currMovement = 0;
+	private float angle;
+
 	public bool canFall = false;
 	public float fallSpeed = 50f;
 	public float fallTime = 0f;
 	private float elapsedTimeAfterFall = 0f;
 	private bool isFalling = false;
 	public float activeTimeAfterFall = 10f;
+
 	public bool canCrush = true;
 	public float crushDamage = 999999;
 	public bool destroyable = false;
@@ -40,8 +46,21 @@ public class Ground : MonoBehaviour {
 		{
 			if (movementType == GroundMovementType.LINEAR)
 			{
-
+				MoveLinear();
 			}
+			else if (movementType == GroundMovementType.LINEAR_BACK)
+			{
+				MoveLinearBack();
+			}
+			else if (movementType == GroundMovementType.LINEAR_CIRCULAR)
+			{
+				MoveLinearCircular();
+			}
+			else if (movementType == GroundMovementType.CIRCLE)
+			{
+				MoveCircle();
+			}
+
 
 		}
 
@@ -57,12 +76,13 @@ public class Ground : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D coll)
 	{
+		if (coll.gameObject.tag == "Ground")
+		{
+			Physics2D.IgnoreCollision(coll.collider, col);
+		}
 		if (canFall && coll.gameObject.tag == "Player")
 		{
 			StartCoroutine("Fall");
-		}
-		else if (isFalling) {
-			transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 50);
 		}
 	}
 
@@ -74,5 +94,60 @@ public class Ground : MonoBehaviour {
 		rb.isKinematic = false;
 		rb.AddForce(new Vector2(0, -fallSpeed));
 		yield return 0;
+	}
+
+	void MoveLinear()
+	{	
+		if (currMovement >= movementSet.Length)
+			return;
+		
+		if (transform.localPosition  == movementSet[currMovement])
+			currMovement++;
+		
+		float step = speed * Time.deltaTime;
+        transform.localPosition  = Vector3.MoveTowards(transform.localPosition , movementSet[currMovement], step);
+	}
+
+	void MoveLinearBack()
+	{	
+		if (transform.localPosition == movementSet[currMovement])
+		{
+			if (ascending)
+				currMovement++;
+			else
+				currMovement--;
+		}
+		if (currMovement < 0)
+		{
+			currMovement = 0;
+			ascending = true;
+		}
+		else if (currMovement >= movementSet.Length)
+		{
+			currMovement = movementSet.Length - 1;
+			ascending = false;
+		}
+		
+		float step = speed * Time.deltaTime;
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, movementSet[currMovement], step);
+	}
+
+	void MoveLinearCircular()
+	{	
+		if (transform.localPosition  == movementSet[currMovement]) {
+			Debug.Log(currMovement + " " + transform.localPosition );
+			currMovement = (currMovement + 1) % movementSet.Length;
+		}
+		
+		float step = speed * Time.deltaTime;
+        transform.localPosition  = Vector3.MoveTowards(transform.localPosition , movementSet[currMovement], step);
+	}
+
+	void MoveCircle()
+	{
+		angle += speed * Time.deltaTime;
+ 
+        var offset = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)) * 2f;
+        transform.localPosition = center + offset;
 	}
 }
