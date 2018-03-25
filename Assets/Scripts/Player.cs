@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
     // Movement
     public float maxSpeed = 3f;
     public float speed = 60f;
-    public float jumpPower = 380f;
+    public float jumpPower = 450f;
     public bool grounded;
     private bool canDoubleJump;
     private bool isMobile = false;

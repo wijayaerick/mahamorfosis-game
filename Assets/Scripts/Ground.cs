@@ -86,6 +86,11 @@ public class Ground : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionStay2D (Collision2D coll)
+	{
+		
+	}
+
 	IEnumerator Fall()
 	{
 		yield return new WaitForSeconds(fallTime);
@@ -135,7 +140,6 @@ public class Ground : MonoBehaviour {
 	void MoveLinearCircular()
 	{	
 		if (transform.localPosition  == movementSet[currMovement]) {
-			Debug.Log(currMovement + " " + transform.localPosition );
 			currMovement = (currMovement + 1) % movementSet.Length;
 		}
 		
