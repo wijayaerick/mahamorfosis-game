@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - Bullet
   - Ground
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,40 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background 5
+    uniqueID: 2646626775
+    locked: 0
+  - name: Background 4
+    uniqueID: 1185951045
+    locked: 0
+  - name: Background 3
+    uniqueID: 1655493681
+    locked: 0
+  - name: Ground
+    uniqueID: 447081663
+    locked: 0
+  - name: Background 2
+    uniqueID: 854382185
+    locked: 0
+  - name: Ground
+    uniqueID: 375765943
+    locked: 0
+  - name: Item
+    uniqueID: 2243002481
+    locked: 0
+  - name: Bullet
+    uniqueID: 4061327805
+    locked: 0
+  - name: Enemy
+    uniqueID: 1575073789
+    locked: 0
+  - name: Player
+    uniqueID: 1150739203
+    locked: 0
+  - name: Background 1
+    uniqueID: 3483953305
+    locked: 0
+  - name: UI
+    uniqueID: 3876110349
     locked: 0

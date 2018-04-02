@@ -12,6 +12,7 @@ public class Ground : MonoBehaviour {
 	public GroundMovementType movementType;
 	public float speed = 1;	
 	public Vector3[] movementSet;
+	public float radius;
 	public Vector2 center;
 	private bool ascending = true;
 	private int currMovement = 0;
@@ -151,7 +152,7 @@ public class Ground : MonoBehaviour {
 	{
 		angle += speed * Time.deltaTime;
  
-        var offset = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)) * 2f;
+        var offset = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)) * radius;
         transform.localPosition = center + offset;
 	}
 }

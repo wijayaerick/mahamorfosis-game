@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 
     // Movement
     public float maxSpeed = 3f;
+    private float currMaxSpeed;
     public float speed = 60f;
     public float jumpPower = 450f;
     public bool grounded;
@@ -42,8 +43,10 @@ public class Player : MonoBehaviour {
 		#else
 			isMobile = false;
 		#endif
+        
         rb = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
+        
         curHealth = maxHealth;
 	}
 	
@@ -56,11 +59,11 @@ public class Player : MonoBehaviour {
         // Handle Player Orientation (Left/Right)
         if (inputHorizontal < -0.1f)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
         if (inputHorizontal > 0.1f)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
         // Handle Upper Shoot Direction and Duck
@@ -85,6 +88,11 @@ public class Player : MonoBehaviour {
         {
             Jump();
         }
+
+        currMaxSpeed = maxSpeed;
+        if (!grounded) {
+            currMaxSpeed /= 2;
+        }
     }
 
     void FixedUpdate()
@@ -108,13 +116,13 @@ public class Player : MonoBehaviour {
 
         // Moving
         rb.AddForce(Vector2.right * speed * inputHorizontal);
-        if (rb.velocity.x > maxSpeed)
+        if (rb.velocity.x > currMaxSpeed)
         {
-            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(currMaxSpeed, rb.velocity.y);
         }
-        if (rb.velocity.x < -maxSpeed)
+        if (rb.velocity.x < -currMaxSpeed)
         {
-            rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(-currMaxSpeed, rb.velocity.y);
         }
     }
 

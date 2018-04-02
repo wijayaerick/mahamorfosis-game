@@ -10,6 +10,7 @@ public class Level1 : MonoBehaviour {
 	public float time, lastTime;
 	public int score, lastScore;
 	public int money, lastMoney;
+	public Vector2[] checkpoints;
 
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();

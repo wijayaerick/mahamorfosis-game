@@ -15,7 +15,7 @@ public class Spike : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         switch (knockDir) {
             case Direction.North:
-                knockVector = new Vector2(0, 200);
+                knockVector = new Vector2(0, 300);
                 break;
             case Direction.South:
                 knockVector = new Vector2(0, -200);
@@ -27,7 +27,7 @@ public class Spike : MonoBehaviour {
                 knockVector = new Vector2(150, 0);
                 break;    
             default:
-                knockVector = new Vector2(0, 200);
+                knockVector = new Vector2(0, 300);
                 break;
         }
 	}

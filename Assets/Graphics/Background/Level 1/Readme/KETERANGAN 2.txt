@@ -1,0 +1,5 @@
+KETERANGAN:
+
+1. Ukuran item dalam background tidak harus sesuai dengan ukuran di "KETERANGAN 1" bisa dirubah sesuai keinginan level designer.
+2. Layer 4 bisa di loop atau disambung dengan item "4 - 02".
+3. Komposisi bebas asal layer 2 tidak terlalu ramai (banyak item) karena nanti karakter bisa 'tidak terlihat'.
