@@ -6,10 +6,12 @@ public class Pause : MonoBehaviour {
 
     public GameObject pauseUI;
     private bool paused = false;
+    private AudioSource buttonClick;
 
     void Start()
     {
         pauseUI.SetActive(false);
+        buttonClick = GetComponents<AudioSource>()[1];
     }
 
     void Update()
@@ -33,25 +35,30 @@ public class Pause : MonoBehaviour {
 
     public void Resume()
     {
+        buttonClick.Play();
         paused = false;
     }
 
     public void Restart()
     {
+        buttonClick.Play();
         Application.LoadLevel(Application.loadedLevel);
     }
 
     public void MainMenu()
     {
+        buttonClick.Play();
         Application.LoadLevel(0);
     }
 
     public void Quit()
     {
+        buttonClick.Play();
         Application.Quit();
     }
 
     public void PauseGame(){
+        buttonClick.Play();
         paused = true;
     }
 

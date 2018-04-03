@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour {
 
-    public int damage = 3;
+    public int damage = 40;
     public enum Direction {North, East, South, West};
     public Direction knockDir = Direction.North;
 

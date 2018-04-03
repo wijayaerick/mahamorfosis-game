@@ -19,11 +19,13 @@ public class PlayerAttack : MonoBehaviour {
 
     private Animator anim;
     private Player player;
+    private AudioSource audioShoot;
 
 	void Awake ()
     {
         player = GetComponent<Player>();
         anim = GetComponent<Animator>();
+        audioShoot = GetComponents<AudioSource>()[1];
 	}
 	
 	void Update ()
@@ -56,6 +58,7 @@ public class PlayerAttack : MonoBehaviour {
     public void Shoot()
     {
         // Dua baris dibawah jangan diapus/dipindahin
+        audioShoot.Play();
         attacking = true;
         attackTimer = attackCd;
 

@@ -94,8 +94,10 @@ abstract public class Enemy : MonoBehaviour {
 
     public virtual void Damage (int damage)
     {
-        curHealth -= damage;
-        GetComponent<Animation>().Play("Player_Damaged");
+        if (awake) {
+            curHealth -= damage;
+            GetComponent<Animation>().Play("Player_Damaged");
+        }
     }
 
     public virtual void OnCollisionEnter2D (Collision2D col)

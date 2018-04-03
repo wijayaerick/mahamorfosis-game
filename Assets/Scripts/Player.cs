@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
     public float inputVertical;
     private Rigidbody2D rb;
     private Animator anim;
+    private AudioSource audioJump;
 
     void Start ()
     {
@@ -46,6 +47,8 @@ public class Player : MonoBehaviour {
         
         rb = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
+
+        audioJump = GetComponents<AudioSource>()[0];
         
         curHealth = maxHealth;
 	}
@@ -55,6 +58,7 @@ public class Player : MonoBehaviour {
         // Update animator
         anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+        anim.SetBool("lookingUp", lookingUp);
 
         // Handle Player Orientation (Left/Right)
         if (inputHorizontal < -0.1f)
@@ -171,7 +175,7 @@ public class Player : MonoBehaviour {
                 knockDir.y *= -1;
             }
 
-            rb.AddForce(new Vector3(transform.position.x * knockDir.x, transform.position.y * knockDir.y, transform.position.z));
+            rb.AddForce(new Vector3(transform.position.x * knockDir.x, transform.position.y * knockDir.y, transform.position.z) / 3);
         }
         yield return 0;
     }
@@ -199,10 +203,12 @@ public class Player : MonoBehaviour {
     {
         if (grounded)
         {
+            audioJump.Play();
             rb.AddForce(Vector2.up * jumpPower);
         }
         else if (canDoubleJump)
         {
+            audioJump.Play();
             canDoubleJump = false;
             rb.angularVelocity = 0f;
             rb.velocity = new Vector2(rb.velocity.x, 0.0f);

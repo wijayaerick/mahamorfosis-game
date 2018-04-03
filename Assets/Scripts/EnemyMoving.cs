@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMoving : Enemy {
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
     public float speed;
     public float maxSpeed;
     // Use this for initialization
