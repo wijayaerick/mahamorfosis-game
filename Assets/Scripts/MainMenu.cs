@@ -19,6 +19,8 @@ public class MainMenu : MonoBehaviour {
     private const int LEVEL4 = 9;
     private const int STARTGAME = 10;
 
+    private AudioSource buttonClick;
+
 
     public Canvas canvas;
     public Button[] buttons;
@@ -32,6 +34,7 @@ public class MainMenu : MonoBehaviour {
         buttons = GetComponentsInChildren<Button>();
         username = GetComponentInChildren<InputField>();
         difficulty = GetComponentInChildren<Dropdown>();
+        buttonClick = GetComponents<AudioSource>()[0];
 
         // Add Listeners
         buttons[NEWGAME].onClick.AddListener(NewGameOnClick);
@@ -61,21 +64,25 @@ public class MainMenu : MonoBehaviour {
 
     private void Level1OnClick()
     {
+        buttonClick.Play();
         SceneManager.LoadScene(1);
     }
 
     private void Level2OnClick()
     {
+        buttonClick.Play();
         SceneManager.LoadScene(2);
     }
 
     private void Level3OnClick()
     {
+        buttonClick.Play();
         SceneManager.LoadScene(3);
     }
 
     private void Level4OnClick()
     {
+        buttonClick.Play();
         SceneManager.LoadScene(4);
     }
 
@@ -87,6 +94,7 @@ public class MainMenu : MonoBehaviour {
 
     private void NewGameOnClick()
     {
+        buttonClick.Play();
         HideMainButtons();
         buttons[BACK].gameObject.SetActive(true);
         username.gameObject.SetActive(true);
@@ -96,6 +104,7 @@ public class MainMenu : MonoBehaviour {
 
     private void ContinueOnClick()
     {
+        buttonClick.Play();
         HideMainButtons();
         buttons[BACK].gameObject.SetActive(true);
         buttons[LEVEL1].gameObject.SetActive(true);
@@ -106,23 +115,27 @@ public class MainMenu : MonoBehaviour {
 
     private void ShopOnClick()
     {
+        buttonClick.Play();
         HideMainButtons();
         buttons[BACK].gameObject.SetActive(true);
     }
 
     private void LeaderboardOnClick()
     {
+        buttonClick.Play();
         HideMainButtons();
         buttons[BACK].gameObject.SetActive(true);
     }
 
     private void QuitOnClick()
     {
+        buttonClick.Play();
         Application.Quit();
     }
 
     private void BackOnClick()
     {
+        buttonClick.Play();
         buttons[NEWGAME].gameObject.SetActive(true);
         buttons[CONTINUE].gameObject.SetActive(true);
         buttons[SHOP].gameObject.SetActive(true);
@@ -152,6 +165,7 @@ public class MainMenu : MonoBehaviour {
 
     private void StartGameOnClick()
     {
+        buttonClick.Play();
         Data.difficulty = difficulty.value;
         Data.level = 0;
         Data.score = 0;
@@ -168,7 +182,7 @@ public class MainMenu : MonoBehaviour {
         Data.scores[1] = 0;
         Data.scores[2] = 0;
         Data.scores[3] = 0;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2); // perlu diperhatikan
     }
 
 

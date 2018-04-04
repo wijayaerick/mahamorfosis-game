@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TahuMoving : EnemyMoving {
+public class Bakwan : EnemyMoving {
 
-	// Use this for initialization
 	public GameObject soundManager;
 	public bool isSmart;
+
+    public override void Awake()
+	{
+        base.Awake();
+    }
+
 	public override void Start ()
     {
 		base.Start();
@@ -14,8 +19,6 @@ public class TahuMoving : EnemyMoving {
 	
 	public override void Update ()
     {
-        anim.SetBool("awake", awake);
-		anim.SetBool("moving", awake);
         RangeCheck();
 
         if (awake)
@@ -24,13 +27,16 @@ public class TahuMoving : EnemyMoving {
 				if (player.transform.position.x < transform.position.x)
 				{
 					rb.AddForce(Vector2.right * speed * -1);
+					transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 				} else
 				{
 					rb.AddForce(Vector2.right * speed * 1);
+					transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 				}
 			}
 			else {
 				rb.AddForce(Vector2.right * speed * -1);
+				transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			}
             
             if (rb.velocity.x > maxSpeed)
@@ -49,6 +55,20 @@ public class TahuMoving : EnemyMoving {
             Destroy(gameObject);
             Die();
         }
+    }
 
+	public override void Attack() 
+	{
+		base.Attack();
+	}
+
+	public override void OnCollisionEnter2D (Collision2D col)
+	{
+		base.OnCollisionEnter2D(col);
+	}
+
+	public override void Die()
+    {
+        base.Die();
     }
 }
