@@ -11,12 +11,13 @@ public class MainMenu : MonoBehaviour {
     private const int CONTINUE = 1;
     private const int SHOP = 2;
     private const int LEADERBOARD = 3;
-    private const int QUIT = 4;
-    private const int RIGHT = 5;
-    private const int LEFT = 6;
-    private const int INITIALBUTTON = 7;
-    private const int LEVEL3 = 8;
-    private const int LEVEL4 = 9;
+    private const int OPTION = 4;
+    private const int QUIT = 5;
+    private const int RIGHT = 6;
+    private const int LEFT = 7;
+    private const int INITIALBUTTON = 8;
+    private const int BACK = 9;
+
     private const int STARTGAME = 10;
 
     private int buttonState = NEWGAME;
@@ -28,46 +29,49 @@ public class MainMenu : MonoBehaviour {
     public Button[] buttons;
     public InputField username;
     public Dropdown difficulty;
+    public GameObject leaderboard;
+    public GameObject mainLogo;
+    public GameObject shop;
+    public GameObject option;
     
 
 	void Start () {
         // Get Components
         canvas = GetComponentInChildren<Canvas>();
         buttons = GetComponentsInChildren<Button>();
-        username = GetComponentInChildren<InputField>();
-        difficulty = GetComponentInChildren<Dropdown>();
-        buttonClick = GetComponents<AudioSource>()[0];
+        //username = GetComponentInChildren<InputField>();
+        //difficulty = GetComponentInChildren<Dropdown>();
+        buttonClick = GetComponent<AudioSource>();
 
         // Add Listeners
         buttons[NEWGAME].onClick.AddListener(NewGameOnClick);
         buttons[CONTINUE].onClick.AddListener(ContinueOnClick);
         buttons[SHOP].onClick.AddListener(ShopOnClick);
         buttons[LEADERBOARD].onClick.AddListener(LeaderboardOnClick);
+        buttons[OPTION].onClick.AddListener(OptionOnClick);
         buttons[QUIT].onClick.AddListener(QuitOnClick);
         buttons[RIGHT].onClick.AddListener(RightOnClick);
         buttons[LEFT].onClick.AddListener(LeftOnClick);
         buttons[INITIALBUTTON].onClick.AddListener(InitialButton);
-        buttons[LEVEL3].onClick.AddListener(Level3OnClick);
-        buttons[LEVEL4].onClick.AddListener(Level4OnClick);
+        buttons[BACK].onClick.AddListener(BackOnClick);
         buttons[STARTGAME].onClick.AddListener(StartGameOnClick);
 
         // SetActive views
         // buttons[RIGHT].gameObject.SetActive(false);
         // buttons[LEFT].gameObject.SetActive(false);
-        buttons[INITIALBUTTON].gameObject.SetActive(false);
-        buttons[LEVEL3].gameObject.SetActive(false);
-        buttons[LEVEL4].gameObject.SetActive(false);
-        username.gameObject.SetActive(false);
-        difficulty.gameObject.SetActive(false);
+        buttons[BACK].gameObject.SetActive(false);
+        // buttons[OPTION].gameObject.SetActive(false);
+        //username.gameObject.SetActive(false);
+        //difficulty.gameObject.SetActive(false);
+        leaderboard.SetActive(false);
+        option.SetActive(false);
+        shop.SetActive(false);
         buttons[STARTGAME].gameObject.SetActive(false);
 
         HideMainButtons();
-
+        buttons[INITIALBUTTON].gameObject.SetActive(true);
         //Set current button
-        buttonState = NEWGAME;
-        buttons[RIGHT].gameObject.SetActive(true);
-        buttons[LEFT].gameObject.SetActive(true);
-        buttons[buttonState].gameObject.SetActive(true);
+        
     }
 
     private void LeftOnClick()
@@ -88,20 +92,41 @@ public class MainMenu : MonoBehaviour {
 
     private void InitialButton()
     {
-        buttonClick.Play();
-        SceneManager.LoadScene(2);
+        // buttonClick.Play();
+        // SceneManager.LoadScene(2);
+        buttons[INITIALBUTTON].gameObject.SetActive(false);
+        buttonState = NEWGAME;
+        buttons[RIGHT].gameObject.SetActive(true);
+        buttons[LEFT].gameObject.SetActive(true);
+        buttons[buttonState].gameObject.SetActive(true);
     }
 
-    private void Level3OnClick()
+    private void BackOnClick()
     {
         buttonClick.Play();
-        SceneManager.LoadScene(3);
+        // SceneManager.LoadScene(3);
+        if(leaderboard.activeSelf){
+            leaderboard.SetActive(false);
+            showCurrentMenu(LEADERBOARD);
+        } else if(shop.activeSelf) {
+            shop.SetActive(false);
+            showCurrentMenu(SHOP);
+        } else if(option.activeSelf) {
+            option.SetActive(false);
+            showCurrentMenu(OPTION);
+        }
+        buttons[BACK].gameObject.SetActive(false);
+        mainLogo.SetActive(true);
+        
     }
 
-    private void Level4OnClick()
+    private void OptionOnClick()
     {
         buttonClick.Play();
-        SceneManager.LoadScene(4);
+        HideMainButtons();
+        option.SetActive(true);
+        mainLogo.SetActive(false);
+        buttons[BACK].gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -139,13 +164,19 @@ public class MainMenu : MonoBehaviour {
     {
         buttonClick.Play();
         HideMainButtons();
-        //buttons[RIGHT].gameObject.SetActive(true);
+        shop.SetActive(true);
+        mainLogo.SetActive(false);
+        buttons[BACK].gameObject.SetActive(true);
     }
 
     private void LeaderboardOnClick()
     {
         buttonClick.Play();
         HideMainButtons();
+        leaderboard.SetActive(true);
+        mainLogo.SetActive(false);
+        buttons[BACK].gameObject.SetActive(true);
+
         //buttons[RIGHT].gameObject.SetActive(true);
     }
 
@@ -157,7 +188,7 @@ public class MainMenu : MonoBehaviour {
 
     private void RightOnClick() 
     {
-        if(buttonState>=4){
+        if(buttonState>=5){
             //overflow ke 0
             buttons[buttonState].gameObject.SetActive(false);
             buttonState = NEWGAME;
@@ -192,9 +223,29 @@ public class MainMenu : MonoBehaviour {
         buttons[CONTINUE].gameObject.SetActive(false);
         buttons[SHOP].gameObject.SetActive(false);
         buttons[LEADERBOARD].gameObject.SetActive(false);
+        buttons[OPTION].gameObject.SetActive(false);
         buttons[QUIT].gameObject.SetActive(false);
         buttons[RIGHT].gameObject.SetActive(false);
         buttons[LEFT].gameObject.SetActive(false);
+    }
+
+    private void ShowMainButtons()
+    {
+        buttons[NEWGAME].gameObject.SetActive(true);
+        buttons[CONTINUE].gameObject.SetActive(true);
+        buttons[SHOP].gameObject.SetActive(true);
+        buttons[LEADERBOARD].gameObject.SetActive(true);
+        buttons[OPTION].gameObject.SetActive(true);
+        buttons[QUIT].gameObject.SetActive(true);
+        buttons[RIGHT].gameObject.SetActive(true);
+        buttons[LEFT].gameObject.SetActive(true);
+    }
+
+    private void showCurrentMenu(int id)
+    {
+        buttons[id].gameObject.SetActive(true);
+        buttons[RIGHT].gameObject.SetActive(true);
+        buttons[LEFT].gameObject.SetActive(true);
     }
 
     private void StartGameOnClick()
