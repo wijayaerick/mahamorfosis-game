@@ -28,6 +28,9 @@ public class NoodleBoss2 :Boss
     public override void Update()
     {
         base.Update();
+        if (curHealth < 0) {
+            Application.LoadLevel(0);
+        }
          
     }
 
@@ -56,8 +59,8 @@ public class NoodleBoss2 :Boss
             for (int i = 0; i < 3; i++)
             {
                 GameObject msgClone;
-                float xPosition = Random.Range(-15.0f, 0);
-                msgPosition = new Vector3(transform.position.x+xPosition, transform.position.y + 5, 0);
+                float xPosition = Random.Range(-120.0f, 30);
+                msgPosition = new Vector3(transform.localPosition.x+xPosition, transform.localPosition.y + 60, 0);
                 msgClone = Instantiate(msg, msgPosition, transform.rotation);
                 msgClone.GetComponent<Rigidbody2D>().velocity = direction* Random.Range(minSpeed, maxSpeed);
             }
