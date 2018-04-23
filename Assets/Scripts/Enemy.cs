@@ -24,6 +24,8 @@ abstract public class Enemy : MonoBehaviour {
     protected float bulletTimer;
 	public GameObject bullet;
 	protected Transform shootPoint;
+    public float itemDropRate = 5f;
+    public GameObject item;
 
     public virtual void Awake ()
     {
@@ -57,7 +59,12 @@ abstract public class Enemy : MonoBehaviour {
         }
 
         if (curHealth <= 0)
-        {
+        {   
+            float rnd = Random.Range(0.000f, 100.000f);
+            if (rnd < itemDropRate) {
+                GameObject clonedItem =  Instantiate(item, transform.position, transform.rotation);
+                clonedItem.GetComponent<ItemHealth>().healthRestored = Random.Range(10, 50);
+            }
             Destroy(gameObject);
             Die();
         }

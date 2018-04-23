@@ -21,8 +21,13 @@ public class TahuStatic : EnemyStatic {
         RangeCheck();
 
         if (curHealth <= 0)
-        {
-			soundManager.GetComponents<AudioSource>()[0].Play();
+        {   
+            soundManager.GetComponents<AudioSource>()[0].Play();
+            float rnd = Random.Range(0.000f, 100.000f);
+            if (rnd < itemDropRate) {
+                GameObject clonedItem =  Instantiate(item, transform.position, transform.rotation);
+                clonedItem.GetComponent<ItemHealth>().healthRestored = Random.Range(10, 50);
+            }
             Destroy(gameObject);
             Die();
         }

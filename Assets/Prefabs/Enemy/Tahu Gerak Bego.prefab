@@ -175,6 +175,8 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletMaxDistance: 30
   bullet: {fileID: 0}
+  itemDropRate: 5
+  item: {fileID: 1972428563192208, guid: 199baa395e7e7cc438425820d5ebb347, type: 2}
   speed: 200
   maxSpeed: 10
   soundManager: {fileID: 0}

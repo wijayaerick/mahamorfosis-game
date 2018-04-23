@@ -154,6 +154,8 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletMaxDistance: 30
   bullet: {fileID: 0}
+  itemDropRate: 5
+  item: {fileID: 1972428563192208, guid: 199baa395e7e7cc438425820d5ebb347, type: 2}
   soundManager: {fileID: 0}
 --- !u!212 &212689146476668860
 SpriteRenderer:
