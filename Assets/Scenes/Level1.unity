@@ -28971,6 +28971,11 @@ Prefab:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 86648912}
+    - target: {fileID: 114377951765520052, guid: c1db10bfddccaf649890cbabe1d04f52,
+        type: 2}
+      propertyPath: damage
+      value: 101
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1db10bfddccaf649890cbabe1d04f52, type: 2}
   m_IsPrefabParent: 0

@@ -30,29 +30,31 @@ public class PlayerAttack : MonoBehaviour {
 	
 	void Update ()
     {
-		if (Input.GetButton("Shoot") && !attacking) // Use Input.GetButtonDown for single press (not hold)
-        {
-            Shoot();
-        }
-
-        if (Input.GetButton("Ulti") && !attacking)
-        {
-            Ulti();
-        }
-
-        if (attacking)
-        {
-            if (attackTimer > 0)
+        if (!player.dead) {
+            if (Input.GetButton("Shoot") && !attacking) // Use Input.GetButtonDown for single press (not hold)
             {
-                attackTimer -= Time.deltaTime;
+                Shoot();
             }
-            else
-            {
-                attacking = false;
-            }
-        }
 
-        anim.SetBool("attacking", attacking);
+            if (Input.GetButton("Ulti") && !attacking)
+            {
+                Ulti();
+            }
+
+            if (attacking)
+            {
+                if (attackTimer > 0)
+                {
+                    attackTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    attacking = false;
+                }
+            }
+
+            anim.SetBool("attacking", attacking);
+        }
 	}
 
     public void Shoot()

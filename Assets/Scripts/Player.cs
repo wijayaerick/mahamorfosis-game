@@ -26,6 +26,7 @@ public class Player : MonoBehaviour {
     // Shoot Direction
     private bool lookingUp = false;
     private bool isDoubleJumping = false;
+    public bool dead = false;
     private bool duck = false;
 
     public float inputHorizontal;
@@ -52,6 +53,8 @@ public class Player : MonoBehaviour {
         audioJump = GetComponents<AudioSource>()[0];
         
         curHealth = maxHealth;
+
+        anim.SetBool("dead", false);
 	}
 	
 	void Update ()
@@ -63,36 +66,38 @@ public class Player : MonoBehaviour {
         anim.SetBool("doubleJump", isDoubleJumping);
 
         // Handle Player Orientation (Left/Right)
-        if (inputHorizontal < -0.1f)
-        {
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        }
-        if (inputHorizontal > 0.1f)
-        {
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        }
+        if (!dead) {
+            if (inputHorizontal < -0.1f)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            if (inputHorizontal > 0.1f)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
 
-        // Handle Upper Shoot Direction and Duck
-        if (inputVertical < -0.1f && grounded)
-        {
-            duck = true;
-            lookingUp = false;
-        }
-        else if (inputVertical > 0.1f)
-        {
-            duck = false;
-            lookingUp = true;
-        }
-        else
-        {
-            duck = false;
-            lookingUp = false;
-        }
+            // Handle Upper Shoot Direction and Duck
+            if (inputVertical < -0.1f && grounded)
+            {
+                duck = true;
+                lookingUp = false;
+            }
+            else if (inputVertical > 0.1f)
+            {
+                duck = false;
+                lookingUp = true;
+            }
+            else
+            {
+                duck = false;
+                lookingUp = false;
+            }
 
-        // Handle Jumping
-        if (Input.GetButtonDown("Jump"))
-        {
-            Jump();
+            // Handle Jumping
+            if (Input.GetButtonDown("Jump"))
+            {
+                Jump();
+            }
         }
 
         currMaxSpeed = maxSpeed;
@@ -122,14 +127,16 @@ public class Player : MonoBehaviour {
         }
 
         // Moving
-        rb.AddForce(Vector2.right * speed * inputHorizontal);
-        if (rb.velocity.x > currMaxSpeed)
-        {
-            rb.velocity = new Vector2(currMaxSpeed, rb.velocity.y);
-        }
-        if (rb.velocity.x < -currMaxSpeed)
-        {
-            rb.velocity = new Vector2(-currMaxSpeed, rb.velocity.y);
+        if (!dead) {
+            rb.AddForce(Vector2.right * speed * inputHorizontal);
+            if (rb.velocity.x > currMaxSpeed)
+            {
+                rb.velocity = new Vector2(currMaxSpeed, rb.velocity.y);
+            }
+            if (rb.velocity.x < -currMaxSpeed)
+            {
+                rb.velocity = new Vector2(-currMaxSpeed, rb.velocity.y);
+            }
         }
     }
 
@@ -148,7 +155,10 @@ public class Player : MonoBehaviour {
 
     public void Die()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        anim.SetBool("dead", true);
+        dead = true;
+        rb.velocity = Vector3.zero;
+        //Application.LoadLevel(Application.loadedLevel);
     }
 
     public IEnumerator Knockback(float knockDur, Vector2 knockDir)
@@ -178,7 +188,11 @@ public class Player : MonoBehaviour {
                 knockDir.y *= -1;
             }
 
-            rb.AddForce(new Vector3(transform.position.x * knockDir.x, transform.position.y * knockDir.y, transform.position.z) / 3);
+            if (dead) {
+                rb.velocity = Vector3.zero;
+            } else {
+                rb.AddForce(new Vector3(transform.position.x * knockDir.x, transform.position.y * knockDir.y, transform.position.z) / 3);
+            }
         }
         yield return 0;
     }
