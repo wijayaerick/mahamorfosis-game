@@ -5,11 +5,16 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour {
 
 	public int number;
+
+	void Start() {
+
+	}
+	
 	void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.CompareTag("Player"))
 		{
-			GameObject.FindObjectOfType<Camera>().GetComponent<Level1>().checkpoint = number;
+			PlayerPrefs.SetInt("checkpoint", number);
 		}
 	}
 }

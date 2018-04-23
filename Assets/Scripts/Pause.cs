@@ -7,18 +7,25 @@ public class Pause : MonoBehaviour {
     public GameObject pauseUI;
     private bool paused = false;
     private AudioSource buttonClick;
+    private Player player;
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         pauseUI.SetActive(false);
         buttonClick = GetComponents<AudioSource>()[1];
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Pause"))
+        if (Input.GetButtonDown("Pause") && !player.dead)
         {
             paused = !paused;
+        }
+
+        if (Input.GetButtonDown("Restart"))
+        {
+            Restart();
         }
 
         if (paused)

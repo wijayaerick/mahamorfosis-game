@@ -15,11 +15,15 @@ public class Level1 : MonoBehaviour {
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		camera = GetComponent<CameraFollow>();
-		checkpoint = Data.checkPoint;
+		checkpoint = PlayerPrefs.GetInt("checkpoint", -1);
+
+		if (checkpoint != -1) {
+			player.transform.position = checkpoints[checkpoint];
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 }

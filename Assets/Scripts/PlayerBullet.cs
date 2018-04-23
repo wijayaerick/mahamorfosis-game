@@ -28,7 +28,7 @@ public class PlayerBullet : MonoBehaviour
 
     void OnTriggerEnter2D (Collider2D col)
     {
-        if (col.CompareTag("Player") || col.CompareTag("Bullet")){
+        if (col.CompareTag("Player") || col.CompareTag("Bullet") || col.CompareTag("Checkpoint")){
             // Do Nothing
         }
         else {
