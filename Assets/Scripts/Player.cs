@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
     private bool isMobile = false;
     
     // Health
-    public int maxHealth = 5;
+    public int maxHealth;
     public int curHealth;
 
     // Shoot
@@ -199,10 +199,10 @@ public class Player : MonoBehaviour {
 
     void OnTriggerEnter2D (Collider2D col)
     {
-        if (col.CompareTag("Coin"))
-        {
-            Destroy(col.gameObject);
-        }
+        // if (col.CompareTag("Coin"))
+        // {
+        //     Destroy(col.gameObject);
+        // }
 
     }
 
@@ -234,5 +234,9 @@ public class Player : MonoBehaviour {
         }
     }
 
-
+    public void IncreaseHealth(int healthRestored) {
+        curHealth += healthRestored;
+        if (curHealth > maxHealth)
+            curHealth = maxHealth;
+    }
 }
