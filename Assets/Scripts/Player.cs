@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
 
     // Shoot Direction
     private bool lookingUp = false;
+    private bool isDoubleJumping = false;
     private bool duck = false;
 
     public float inputHorizontal;
@@ -59,6 +60,7 @@ public class Player : MonoBehaviour {
         anim.SetBool("grounded", grounded);
         anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
         anim.SetBool("lookingUp", lookingUp);
+        anim.SetBool("doubleJump", isDoubleJumping);
 
         // Handle Player Orientation (Left/Right)
         if (inputHorizontal < -0.1f)
@@ -116,6 +118,7 @@ public class Player : MonoBehaviour {
         {
             rb.velocity = easeVelocity;
             canDoubleJump = true;
+            isDoubleJumping = false;
         }
 
         // Moving
@@ -208,6 +211,7 @@ public class Player : MonoBehaviour {
         }
         else if (canDoubleJump)
         {
+            isDoubleJumping = true;
             audioJump.Play();
             canDoubleJump = false;
             rb.angularVelocity = 0f;
