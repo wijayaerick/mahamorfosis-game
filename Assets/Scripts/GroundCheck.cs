@@ -26,18 +26,20 @@ public class GroundCheck : MonoBehaviour {
             player.grounded = true;
         }
 
-        // if (col.gameObject.tag == "Ground"){
-        //     player.transform.parent = col.transform;
-        // }
+        if (col.gameObject.tag == "Ground"){
+            Ground g = col.gameObject.GetComponent<Ground>();
+            if (g.canMove || g.canFall)
+            player.transform.parent = col.transform;
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
         player.grounded = false;
 
-        // if (col.gameObject.tag == "Ground"){
-        //     player.transform.parent = null;
-        // }
+        if (col.gameObject.tag == "Ground"){
+            player.transform.parent = null;
+        }
     }
 
 }

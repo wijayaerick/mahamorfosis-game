@@ -145,6 +145,7 @@ public class Player : MonoBehaviour {
         gameObject.GetComponent<Animation>().Play("Player_Damaged");
         if (dmg > curHealth)
         {
+            curHealth = 0;
             Die();
         }
         else
@@ -191,7 +192,7 @@ public class Player : MonoBehaviour {
             if (dead) {
                 rb.velocity = Vector3.zero;
             } else {
-                rb.AddForce(new Vector3(transform.position.x * knockDir.x, transform.position.y * knockDir.y, transform.position.z) / 3);
+                rb.AddForce(new Vector3(transform.position.x + knockDir.x, transform.position.y + knockDir.y, transform.position.z) / 3);
             }
         }
         yield return 0;
