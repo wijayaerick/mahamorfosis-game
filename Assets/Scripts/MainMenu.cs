@@ -17,9 +17,10 @@ public class MainMenu : MonoBehaviour {
     private const int LEFT = 7;
     private const int INITIALBUTTON = 8;
     private const int BACK = 9;
-
-    private const int STARTGAME = 10;
-
+    private const int CANCEL = 10;
+    private const int OTAK = 11;
+    private const int HATI = 12;
+    private const int STARTGAME = 13;
     private int buttonState = NEWGAME;
 
     private AudioSource buttonClick;
@@ -33,8 +34,12 @@ public class MainMenu : MonoBehaviour {
     public GameObject mainLogo;
     public GameObject shop;
     public GameObject option;
+    public GameObject pickCharacter;
+    public Sprite otakNotClick;
+    public Sprite otakClick;
+    public Sprite hatiNotClick;
+    public Sprite hatiClick;
     
-
 	void Start () {
         // Get Components
         canvas = GetComponentInChildren<Canvas>();
@@ -54,18 +59,25 @@ public class MainMenu : MonoBehaviour {
         buttons[LEFT].onClick.AddListener(LeftOnClick);
         buttons[INITIALBUTTON].onClick.AddListener(InitialButton);
         buttons[BACK].onClick.AddListener(BackOnClick);
+        buttons[CANCEL].onClick.AddListener(CancelOnClick);
+        buttons[OTAK].onClick.AddListener(OtakOnClick);
+        buttons[HATI].onClick.AddListener(HatiOnClick);
         buttons[STARTGAME].onClick.AddListener(StartGameOnClick);
 
         // SetActive views
         // buttons[RIGHT].gameObject.SetActive(false);
         // buttons[LEFT].gameObject.SetActive(false);
         buttons[BACK].gameObject.SetActive(false);
+        buttons[CANCEL].gameObject.SetActive(false);
+        buttons[OTAK].gameObject.SetActive(false);
+        buttons[HATI].gameObject.SetActive(false);
         // buttons[OPTION].gameObject.SetActive(false);
         //username.gameObject.SetActive(false);
         //difficulty.gameObject.SetActive(false);
         leaderboard.SetActive(false);
         option.SetActive(false);
         shop.SetActive(false);
+        pickCharacter.SetActive(false);
         buttons[STARTGAME].gameObject.SetActive(false);
 
         HideMainButtons();
@@ -140,11 +152,12 @@ public class MainMenu : MonoBehaviour {
         buttonClick.Play();
         HideMainButtons();
         //Sementara langsung ke story dulu
-        StartGameOnClick();
-        // buttons[RIGHT].gameObject.SetActive(true);
-        // username.gameObject.SetActive(true);
-        // difficulty.gameObject.SetActive(true);
-        // buttons[STARTGAME].gameObject.SetActive(true);
+        mainLogo.SetActive(false);
+        pickCharacter.SetActive(true);
+        buttons[CANCEL].gameObject.SetActive(true);
+        buttons[STARTGAME].gameObject.SetActive(true);
+        buttons[OTAK].gameObject.SetActive(true);
+        buttons[HATI].gameObject.SetActive(true);
     }
 
     private void ContinueOnClick()
@@ -186,6 +199,41 @@ public class MainMenu : MonoBehaviour {
         Application.Quit();
     }
 
+    private void CancelOnClick()
+    {
+        buttonClick.Play();
+        pickCharacter.SetActive(false);
+        showCurrentMenu(NEWGAME);
+        buttons[CANCEL].gameObject.SetActive(false);
+        buttons[STARTGAME].gameObject.SetActive(false);
+        buttons[OTAK].gameObject.SetActive(false);
+        buttons[HATI].gameObject.SetActive(false);
+        mainLogo.SetActive(true);
+    }
+
+    private void OtakOnClick()
+    {
+        buttonClick.Play();
+        if(buttons[OTAK].gameObject.GetComponent<Image>().sprite == otakNotClick){
+            if(buttons[HATI].gameObject.GetComponent<Image>().sprite == hatiClick){
+                buttons[HATI].gameObject.GetComponent<Image>().sprite = hatiNotClick;
+            }
+            buttons[OTAK].gameObject.GetComponent<Image>().sprite = otakClick;
+        }
+        
+    }
+
+    private void HatiOnClick()
+    {
+        buttonClick.Play();
+        if(buttons[HATI].gameObject.GetComponent<Image>().sprite == hatiNotClick){
+            if(buttons[OTAK].gameObject.GetComponent<Image>().sprite == otakClick){
+                buttons[OTAK].gameObject.GetComponent<Image>().sprite = otakNotClick;
+            }
+            buttons[HATI].gameObject.GetComponent<Image>().sprite = hatiClick;
+        }
+    }
+
     private void RightOnClick() 
     {
         if(buttonState>=5){
@@ -198,23 +246,6 @@ public class MainMenu : MonoBehaviour {
             buttonState += 1;
             buttons[buttonState].gameObject.SetActive(true);
         }
-
-        // buttonClick.Play();
-        // buttons[NEWGAME].gameObject.SetActive(true);
-        // buttons[CONTINUE].gameObject.SetActive(true);
-        // buttons[SHOP].gameObject.SetActive(true);
-        // buttons[LEADERBOARD].gameObject.SetActive(true);
-        // buttons[QUIT].gameObject.SetActive(true);
-        // buttons[RIGHT].gameObject.SetActive(false);
-
-        // buttons[LEFT].gameObject.SetActive(false);
-        // buttons[LEVEL2].gameObject.SetActive(false);
-        // buttons[LEVEL3].gameObject.SetActive(false);
-        // buttons[LEVEL4].gameObject.SetActive(false);
-
-        // username.gameObject.SetActive(false);
-        // difficulty.gameObject.SetActive(false);
-        // buttons[STARTGAME].gameObject.SetActive(false);
     }
 
     private void HideMainButtons()
@@ -251,7 +282,7 @@ public class MainMenu : MonoBehaviour {
     private void StartGameOnClick()
     {
         buttonClick.Play();
-        Data.difficulty = difficulty.value;
+        //Data.difficulty = difficulty.value;
         Data.level = 0;
         Data.score = 0;
         Data.money = 0;
@@ -271,7 +302,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     private void goToLevel1(){
-        Data.difficulty = difficulty.value;
+        //Data.difficulty = difficulty.value;
         Data.level = 0;
         Data.score = 0;
         Data.money = 0;
@@ -287,7 +318,7 @@ public class MainMenu : MonoBehaviour {
         Data.scores[1] = 0;
         Data.scores[2] = 0;
         Data.scores[3] = 0;
-        SceneManager.LoadScene(2); // perlu diperhatikan
+        SceneManager.LoadScene(1); // perlu diperhatikan
     }
 
 
