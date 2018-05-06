@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
@@ -24,7 +25,9 @@ public class MainMenu : MonoBehaviour {
     private int buttonState = NEWGAME;
 
     private AudioSource buttonClick;
-
+    public AudioMixer mixer;
+    public Slider music;
+    public Slider sfx;
 
     public Canvas canvas;
     public Button[] buttons;
@@ -84,6 +87,23 @@ public class MainMenu : MonoBehaviour {
         buttons[INITIALBUTTON].gameObject.SetActive(true);
         //Set current button
         
+        // Audio
+        music.onValueChanged.AddListener(delegate {SetPlayerPrefsMusic(); });
+        sfx.onValueChanged.AddListener(delegate {SetPlayerPrefsSFX(); });
+        music.value = PlayerPrefs.GetFloat("Music", 1);
+        sfx.value = PlayerPrefs.GetFloat("SFX", 1);
+        SetPlayerPrefsMusic();
+        SetPlayerPrefsSFX();
+
+    }
+    
+    private void SetPlayerPrefsMusic() {
+        PlayerPrefs.SetFloat("Music", music.value);
+        mixer.SetFloat("Volume Music",  Mathf.Log10(music.value) * 30);
+    }
+    private void SetPlayerPrefsSFX() {
+        PlayerPrefs.SetFloat("SFX", sfx.value);
+        mixer.SetFloat("Volume SFX",  Mathf.Log10(sfx.value) * 30);
     }
 
     private void LeftOnClick()
@@ -98,8 +118,23 @@ public class MainMenu : MonoBehaviour {
             buttonState -= 1;
             buttons[buttonState].gameObject.SetActive(true);
         }
-        // buttonClick.Play();
+        buttonClick.Play();
         // SceneManager.LoadScene(1);
+    }
+
+    private void RightOnClick() 
+    {
+        if(buttonState>=5){
+            //overflow ke 0
+            buttons[buttonState].gameObject.SetActive(false);
+            buttonState = NEWGAME;
+            buttons[buttonState].gameObject.SetActive(true);
+        } else {
+            buttons[buttonState].gameObject.SetActive(false);
+            buttonState += 1;
+            buttons[buttonState].gameObject.SetActive(true);
+        }
+        buttonClick.Play();
     }
 
     private void InitialButton()
@@ -231,20 +266,6 @@ public class MainMenu : MonoBehaviour {
                 buttons[OTAK].gameObject.GetComponent<Image>().sprite = otakNotClick;
             }
             buttons[HATI].gameObject.GetComponent<Image>().sprite = hatiClick;
-        }
-    }
-
-    private void RightOnClick() 
-    {
-        if(buttonState>=5){
-            //overflow ke 0
-            buttons[buttonState].gameObject.SetActive(false);
-            buttonState = NEWGAME;
-            buttons[buttonState].gameObject.SetActive(true);
-        } else {
-            buttons[buttonState].gameObject.SetActive(false);
-            buttonState += 1;
-            buttons[buttonState].gameObject.SetActive(true);
         }
     }
 
