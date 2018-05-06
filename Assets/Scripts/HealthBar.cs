@@ -8,6 +8,7 @@ public class HealthBar : MonoBehaviour {
     private Player player;
     public Slider slider;
     public Image visualHealth;
+    public RectTransform[] ultis;
 
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -16,6 +17,7 @@ public class HealthBar : MonoBehaviour {
 	
     void Update () {
         HandleHealth();
+        HandleUlti();
     }
 
     private void HandleHealth() {
@@ -32,5 +34,9 @@ public class HealthBar : MonoBehaviour {
         }
     }
 
-
+    private void HandleUlti() {
+        if (player.ulti < 3 && player.ulti >= 0) {
+            ultis[player.ulti].gameObject.SetActive(false);
+        }
+    }
 }

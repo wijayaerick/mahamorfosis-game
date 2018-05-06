@@ -20,8 +20,7 @@ public class Player : MonoBehaviour {
     // Shoot
     public int damage = 20;
     public int damageUlti = 120;
-    public int maxUlti = 100;
-    public int curUlti = 0;
+    public int ulti = 3;
 
     // Shoot Direction
     private bool lookingUp = false;

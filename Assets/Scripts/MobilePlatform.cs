@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MobilePlatform : MonoBehaviour {
 
 	public GameObject mobileUI;
+	public Sprite ultiEmpty;
+	public Button ultiButton;
 	private bool isMobile;
 	private Pause pause;
 	private Player player;
@@ -29,6 +32,11 @@ public class MobilePlatform : MonoBehaviour {
 	}
 	
 	void Update () {
+		if (player.ulti <= 0) {
+			ultiButton.interactable = false;
+			ultiButton.image.sprite = ultiEmpty;
+		}
+
 		if (pause.isPaused()){
 			mobileUI.SetActive(false);
 		}
@@ -38,7 +46,7 @@ public class MobilePlatform : MonoBehaviour {
 
 		if (shooting && !playerAttack.attacking) {
 			playerAttack.Shoot();
-		} else if (ulting && !playerAttack.attacking) {
+		} else if (ulting && !playerAttack.attacking && player.ulti > 0) {
 			playerAttack.Ulti();
 		}
 	}

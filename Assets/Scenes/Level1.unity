@@ -16373,6 +16373,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 1995211962}
   visualHealth: {fileID: 2145853180}
+  ultis:
+  - {fileID: 1221887074}
+  - {fileID: 333352511}
+  - {fileID: 1476124458}
 --- !u!114 &756127976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16385,6 +16389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobileUI: {fileID: 1145434389}
+  shootButton: {fileID: 0}
+  ultiButton: {fileID: 1178778572}
 --- !u!114 &756127977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23920,7 +23926,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a81b7da4827b53e4bac140477a1ea245, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53610a9f75abc774b983d35c31f0fb30, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -28017,8 +28023,7 @@ MonoBehaviour:
   curHealth: 100
   damage: 20
   damageUlti: 120
-  maxUlti: 100
-  curUlti: 0
+  ulti: 3
   dead: 0
   win: 0
   inputHorizontal: 0

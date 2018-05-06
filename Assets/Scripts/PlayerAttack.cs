@@ -36,9 +36,10 @@ public class PlayerAttack : MonoBehaviour {
                 Shoot();
             }
 
-            if (Input.GetButton("Ulti") && !attacking)
+            if (Input.GetButton("Ulti") && !attacking && player.ulti > 0)
             {
                 Ulti();
+                
             }
 
             if (attacking)
@@ -96,9 +97,12 @@ public class PlayerAttack : MonoBehaviour {
 
     public void Ulti()
     {
+        player.ulti--;
+        
         // Dua baris dibawah jangan diapus/dipindahin
         attacking = true;
-        attackTimer = attackCd;
+        attackTimer = 1.8f;
+        
 
         if (player.isLookingUp() && !player.isDucking())
         {
