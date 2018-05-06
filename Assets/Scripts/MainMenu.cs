@@ -85,7 +85,10 @@ public class MainMenu : MonoBehaviour {
 
         HideMainButtons();
         buttons[INITIALBUTTON].gameObject.SetActive(true);
-        //Set current button
+       
+        if (PlayerPrefs.GetInt("checkpoint", -1) == -1) {
+            buttons[CONTINUE].interactable = false;
+        }
         
         // Audio
         music.onValueChanged.AddListener(delegate {SetPlayerPrefsMusic(); });
@@ -303,22 +306,23 @@ public class MainMenu : MonoBehaviour {
     private void StartGameOnClick()
     {
         buttonClick.Play();
+        PlayerPrefs.SetInt("checkpoint", -1);
         //Data.difficulty = difficulty.value;
-        Data.level = 0;
-        Data.score = 0;
-        Data.money = 0;
-        Data.furthestLevel = Data.level;
-        Data.healthLevel = 0;
-        Data.damageLevel = 0;
-        Data.speedLevel = 0;
-        Data.stars[0] = 0;
-        Data.stars[1] = 0;
-        Data.stars[2] = 0;
-        Data.stars[3] = 0;
-        Data.scores[0] = 0;
-        Data.scores[1] = 0;
-        Data.scores[2] = 0;
-        Data.scores[3] = 0;
+        // Data.level = 0;
+        // Data.score = 0;
+        // Data.money = 0;
+        // Data.furthestLevel = Data.level;
+        // Data.healthLevel = 0;
+        // Data.damageLevel = 0;
+        // Data.speedLevel = 0;
+        // Data.stars[0] = 0;
+        // Data.stars[1] = 0;
+        // Data.stars[2] = 0;
+        // Data.stars[3] = 0;
+        // Data.scores[0] = 0;
+        // Data.scores[1] = 0;
+        // Data.scores[2] = 0;
+        // Data.scores[3] = 0;
         SceneManager.LoadScene(2); // perlu diperhatikan
     }
 

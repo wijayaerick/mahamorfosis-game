@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Intro : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class Intro : MonoBehaviour {
 	private float time = 20f, curTime;
 	// Use this for initialization
 	void Start () {
+		curTime = 0;
 		rt = GetComponent<RectTransform>();
 	}
 	
@@ -16,7 +18,7 @@ public class Intro : MonoBehaviour {
 		curTime += Time.deltaTime;
 		rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, rt.anchoredPosition.y + 0.7f);
 		if (curTime > time) {
-			Application.LoadLevel(1);
+			SceneManager.LoadScene(3);
 		}
 	}
 }
