@@ -44,6 +44,7 @@ public class MainMenu : MonoBehaviour {
     public Sprite hatiClick;
     
 	void Start () {
+        Time.timeScale = 1;
         // Get Components
         canvas = GetComponentInChildren<Canvas>();
         buttons = GetComponentsInChildren<Button>();
