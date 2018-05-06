@@ -9,11 +9,12 @@ abstract public class Boss : MonoBehaviour
     public int maxHealth;
     public int damage;
     protected Player player;
+	protected Animator anim;
 
 
     public virtual void Awake()
     {
-
+		anim = GetComponent<Animator>();
     }
 
     public virtual void Start()

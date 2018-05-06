@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoodleBoss2 :Boss
+public class NoodleBoss2 : Boss
 {
     private Rigidbody2D rb;
     public float speed;
     public float maxSpeed;
     public float minSpeed;
     public GameObject msg;
-    public float spawnLeastWait;
-    public float spawnMostWait;
-    public int startWait;
+    public float spawnTime;
+    public float jumpPower = 450f;
+    public bool grounded;
+    public bool attack = false;
     // Use this for initialization
     public override void Awake()
     {
@@ -22,16 +23,38 @@ public class NoodleBoss2 :Boss
     {
         base.Start();
         rb = gameObject.GetComponent<Rigidbody2D>();
-        StartCoroutine(waitSpawner());
+        InvokeRepeating("Spawn", spawnTime, spawnTime);
     }
 
     public override void Update()
     {
         base.Update();
-        if (curHealth < 0) {
-            Application.LoadLevel(0);
+        if (curHealth < 0)
+        {
+            //Application.LoadLevel(0);
+            attack = false;
+            NoodleBoss.status = 1;
+            Destroy(gameObject);
+            Die();
         }
-         
+        else if (curHealth >= 0.9 * maxHealth)
+        {
+            if (grounded)
+            {
+                rb.AddForce(Vector2.up * jumpPower);
+            }
+        }
+        else if (curHealth >= 0.7 * maxHealth && curHealth < 0.9 * maxHealth)
+        {
+            anim.SetBool("ready", true);
+            anim.SetBool("attack", false);
+        }
+        else if (curHealth < 0.7 * maxHealth)
+        {
+            attack = true;
+            anim.SetBool("ready", false);
+            anim.SetBool("attack", true);
+        }
     }
 
     public override void Attack()
@@ -49,22 +72,22 @@ public class NoodleBoss2 :Boss
         base.Die();
     }
 
-    IEnumerator waitSpawner()
+    void Spawn()
     {
-        while (true)
+        if (attack)
         {
-            yield return new WaitForSeconds(startWait);
             Vector3 msgPosition;
             Vector2 direction = new Vector2(0, -1);
             for (int i = 0; i < 3; i++)
             {
                 GameObject msgClone;
                 float xPosition = Random.Range(-120.0f, 30);
-                msgPosition = new Vector3(transform.localPosition.x+xPosition, transform.localPosition.y + 60, 0);
+                msgPosition = new Vector3(transform.localPosition.x + xPosition, transform.localPosition.y + 60, 0);
                 msgClone = Instantiate(msg, msgPosition, transform.rotation);
-                msgClone.GetComponent<Rigidbody2D>().velocity = direction* Random.Range(minSpeed, maxSpeed);
+                msgClone.GetComponent<Rigidbody2D>().velocity = direction * Random.Range(minSpeed, maxSpeed);
             }
-            yield return new WaitForSeconds(Random.Range(spawnLeastWait, spawnMostWait));
         }
+        
+        //yield return new WaitForSeconds(Random.Range(spawnLeastWait, spawnMostWait));
     }
 }

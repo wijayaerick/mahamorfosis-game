@@ -35,6 +35,7 @@ public class PlayerBullet : MonoBehaviour
             if (col.CompareTag("Enemy") || col.CompareTag("Boss"))
             {
                 col.SendMessage("Damage", player.damage);
+                Debug.Log("kena musuh");
             }
             Destroy(gameObject);
         }
