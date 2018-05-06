@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour {
     public Slider sfx;
 
     public Canvas canvas;
-    public Button[] buttons;
+    private Button[] buttons;
     public InputField username;
     public Dropdown difficulty;
     public GameObject leaderboard;
