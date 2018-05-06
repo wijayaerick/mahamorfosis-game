@@ -27,7 +27,7 @@ public class MainMenu : MonoBehaviour {
 
 
     public Canvas canvas;
-    public Button[] buttons;
+    private Button[] buttons;
     public InputField username;
     public Dropdown difficulty;
     public GameObject leaderboard;
