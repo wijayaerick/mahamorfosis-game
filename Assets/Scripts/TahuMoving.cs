@@ -51,8 +51,8 @@ public class TahuMoving : EnemyMoving {
                 GameObject clonedItem =  Instantiate(item, transform.position, transform.rotation);
                 clonedItem.GetComponent<ItemHealth>().healthRestored = Random.Range(10, 50);
             }
+			Die();
             Destroy(gameObject);
-            Die();
         }
 
     }

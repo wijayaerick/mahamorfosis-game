@@ -24,6 +24,6 @@ public class Level1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		Data.playTime += Time.deltaTime;
 	}
 }

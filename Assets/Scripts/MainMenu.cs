@@ -326,10 +326,14 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene(2); // perlu diperhatikan
     }
 
-    private void goToLevel1(){
+    private void goToLevel1()
+	{
         //Data.difficulty = difficulty.value;
+		Data.score = 0;
+		Data.playTime = 0.0F;
+		Data.totalEnemyPower = 0;
+		/*
         Data.level = 0;
-        Data.score = 0;
         Data.money = 0;
         Data.furthestLevel = Data.level;
         Data.healthLevel = 0;
@@ -343,6 +347,7 @@ public class MainMenu : MonoBehaviour {
         Data.scores[1] = 0;
         Data.scores[2] = 0;
         Data.scores[3] = 0;
+        */
         SceneManager.LoadScene(1); // perlu diperhatikan
     }
 

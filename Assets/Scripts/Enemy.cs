@@ -37,6 +37,8 @@ abstract public class Enemy : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		shootPoint = GetComponentInChildren<Transform>();
         curHealth = maxHealth;
+
+		Data.totalEnemyPower += (maxHealth + damage);
 	}
 	
 	public virtual void Update ()
@@ -125,6 +127,6 @@ abstract public class Enemy : MonoBehaviour {
 
     public virtual void Die()
     {
-        
+		Data.score += (maxHealth + damage);
     }
 }

@@ -52,8 +52,8 @@ public class Bakwan : EnemyMoving {
         if (curHealth <= 0)
         {
 			soundManager.GetComponents<AudioSource>()[0].Play();
+			Die();
             Destroy(gameObject);
-            Die();
         }
     }
 
