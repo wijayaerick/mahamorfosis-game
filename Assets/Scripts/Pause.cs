@@ -48,6 +48,8 @@ public class Pause : MonoBehaviour {
 
     public void Restart()
     {
+		//Data.score *= 0.5;
+
         buttonClick.Play();
         Application.LoadLevel(Application.loadedLevel);
     }

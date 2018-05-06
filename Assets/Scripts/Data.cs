@@ -5,6 +5,9 @@ using UnityEngine;
 public static class Data {
 
 	public static int level;
+	public static float playTime;
+	public static int totalEnemyPower;
+	public static int finalScore;
 	public static int checkPoint;
 	public static int score;
 	public static int money;
