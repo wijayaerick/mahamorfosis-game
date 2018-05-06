@@ -29,7 +29,7 @@ public class NoodleBoss2 :Boss
     {
         base.Update();
         if (curHealth < 0) {
-            Application.LoadLevel(0);
+            player.win = true;
         }
          
     }

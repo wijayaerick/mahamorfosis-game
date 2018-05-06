@@ -304,6 +304,9 @@ public class MainMenu : MonoBehaviour {
     {
         buttonClick.Play();
         PlayerPrefs.SetInt("checkpoint", -1);
+		Data.score = 0;
+		Data.playTime = 0.0F;
+		Data.totalEnemyPower = 0;
         //Data.difficulty = difficulty.value;
         // Data.level = 0;
         // Data.score = 0;
@@ -326,9 +329,9 @@ public class MainMenu : MonoBehaviour {
     private void goToLevel1()
 	{
         //Data.difficulty = difficulty.value;
-		Data.score = 0;
-		Data.playTime = 0.0F;
-		Data.totalEnemyPower = 0;
+		// Data.score = 0;
+		// Data.playTime = 0.0F;
+		// Data.totalEnemyPower = 0;
 		/*
         Data.level = 0;
         Data.money = 0;

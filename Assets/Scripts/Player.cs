@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     private bool lookingUp = false;
     private bool isDoubleJumping = false;
     public bool dead = false;
+    public bool win = false;
     private bool duck = false;
 
     public float inputHorizontal;
