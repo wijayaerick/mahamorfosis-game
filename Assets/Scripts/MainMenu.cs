@@ -122,7 +122,6 @@ public class MainMenu : MonoBehaviour {
             buttons[buttonState].gameObject.SetActive(true);
         }
         buttonClick.Play();
-        // SceneManager.LoadScene(1);
     }
 
     private void RightOnClick() 
@@ -142,8 +141,7 @@ public class MainMenu : MonoBehaviour {
 
     private void InitialButton()
     {
-        // buttonClick.Play();
-        // SceneManager.LoadScene(2);
+        buttonClick.Play();
         buttons[INITIALBUTTON].gameObject.SetActive(false);
         buttonState = NEWGAME;
         buttons[RIGHT].gameObject.SetActive(true);
@@ -154,7 +152,6 @@ public class MainMenu : MonoBehaviour {
     private void BackOnClick()
     {
         buttonClick.Play();
-        // SceneManager.LoadScene(3);
         if(leaderboard.activeSelf){
             leaderboard.SetActive(false);
             showCurrentMenu(LEADERBOARD);

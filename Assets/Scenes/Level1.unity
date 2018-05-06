@@ -5764,6 +5764,26 @@ Prefab:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 86648912}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 045249c49cf255142bc0feed8244e3af, type: 2}
   m_IsPrefabParent: 0
@@ -7933,6 +7953,26 @@ Prefab:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 86648912}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 045249c49cf255142bc0feed8244e3af, type: 2}
   m_IsPrefabParent: 0
@@ -8615,6 +8655,11 @@ Prefab:
       propertyPath: itemDropRate
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 045249c49cf255142bc0feed8244e3af, type: 2}
   m_IsPrefabParent: 0
@@ -9112,6 +9157,11 @@ Prefab:
         type: 2}
       propertyPath: wakeRange
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0, type: 2}
@@ -13376,6 +13426,11 @@ Prefab:
       propertyPath: maxHealth
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 045249c49cf255142bc0feed8244e3af, type: 2}
   m_IsPrefabParent: 0
@@ -15643,6 +15698,26 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 5.2168293
       objectReference: {fileID: 0}
+    - target: {fileID: 114407331523676206, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a,
+        type: 2}
+      propertyPath: maxHealth
+      value: 260
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407331523676206, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a,
+        type: 2}
+      propertyPath: damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407331523676206, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a,
+        type: 2}
+      propertyPath: itemDropRate
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407331523676206, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a, type: 2}
   m_IsPrefabParent: 0
@@ -17156,7 +17231,12 @@ Prefab:
     - target: {fileID: 114377951765520052, guid: c1db10bfddccaf649890cbabe1d04f52,
         type: 2}
       propertyPath: itemDropRate
-      value: 80
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114377951765520052, guid: c1db10bfddccaf649890cbabe1d04f52,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1db10bfddccaf649890cbabe1d04f52, type: 2}
@@ -18313,6 +18393,21 @@ Prefab:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 86648912}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 045249c49cf255142bc0feed8244e3af, type: 2}
   m_IsPrefabParent: 0
@@ -22988,6 +23083,21 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.63506997
       objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0, type: 2}
   m_IsPrefabParent: 0
@@ -25006,6 +25116,26 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.6350722
       objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0, type: 2}
   m_IsPrefabParent: 0
@@ -26752,6 +26882,11 @@ Prefab:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 86648912}
+    - target: {fileID: 114407331523676206, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a, type: 2}
   m_IsPrefabParent: 0
@@ -28426,6 +28561,21 @@ Prefab:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 86648912}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 045249c49cf255142bc0feed8244e3af, type: 2}
   m_IsPrefabParent: 0
@@ -31437,6 +31587,26 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.63506997
       objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0, type: 2}
   m_IsPrefabParent: 0
@@ -33007,6 +33177,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 7.2181916
       objectReference: {fileID: 0}
+    - target: {fileID: 114407331523676206, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a,
+        type: 2}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407331523676206, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a, type: 2}
   m_IsPrefabParent: 0
@@ -33687,6 +33867,16 @@ Prefab:
     - target: {fileID: 4294508011626674, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a, type: 2}
       propertyPath: m_LocalScale.z
       value: 5.21683
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407331523676206, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a,
+        type: 2}
+      propertyPath: maxHealth
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407331523676206, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c0fd8cfabaa13f4c8d1d9f69dc7101a, type: 2}
@@ -36190,6 +36380,21 @@ Prefab:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 86648912}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 045249c49cf255142bc0feed8244e3af, type: 2}
   m_IsPrefabParent: 0
@@ -37209,6 +37414,21 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.6350722
       objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114057126759612200, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1dcac0944eaf2f4e93d8b648fb2a2f0, type: 2}
   m_IsPrefabParent: 0
@@ -38171,6 +38391,26 @@ Prefab:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 86648912}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 045249c49cf255142bc0feed8244e3af, type: 2}
   m_IsPrefabParent: 0
@@ -40255,6 +40495,21 @@ Prefab:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 86648912}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296321968745808, guid: 045249c49cf255142bc0feed8244e3af,
+        type: 2}
+      propertyPath: wakeRange
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 045249c49cf255142bc0feed8244e3af, type: 2}
   m_IsPrefabParent: 0

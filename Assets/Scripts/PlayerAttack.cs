@@ -115,18 +115,28 @@ public class PlayerAttack : MonoBehaviour {
             isHorizontal = true;
         }
 
-        Vector2 direction = shootPoint.position - transform.position;
-        if (isHorizontal)
-        {
-            direction.y = 0;
-        }
-        else {
-            direction.x = 0;
-        }
-        direction.Normalize();
-
         GameObject bulletClone;
-        bulletClone = Instantiate(bulletUlti, shootPoint.transform.position, shootPoint.transform.rotation);
-        bulletClone.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+        Vector3 offset;
+        if (player.transform.localScale.x < 0) { // left
+            offset = new Vector3(-23, 0 ,0);
+            bulletClone = Instantiate(bulletUlti, shootPoint.transform.position + offset, shootPoint.transform.rotation);
+            bulletClone.transform.parent = player.transform;
+
+            bulletClone.transform.localScale = new Vector3(-bulletClone.transform.localScale.x, bulletClone.transform.localScale.y, bulletClone.transform.localScale.z);
+        } else {
+            offset = new Vector3(23, 0 ,0);
+            bulletClone = Instantiate(bulletUlti, shootPoint.transform.position + offset, shootPoint.transform.rotation);
+            bulletClone.transform.parent = player.transform;
+        }
+        if (player.isLookingUp()) {
+            bulletClone.transform.eulerAngles = new Vector3(0, 0, 90);
+            if (player.transform.localScale.x < 0) {
+                bulletClone.transform.position = new Vector3(bulletClone.transform.position.x + 23, bulletClone.transform.position.y + 23, bulletClone.transform.position.z);
+
+                bulletClone.transform.localScale = new Vector3(-bulletClone.transform.localScale.x, bulletClone.transform.localScale.y, bulletClone.transform.localScale.z);
+            } else {
+                bulletClone.transform.position = new Vector3(bulletClone.transform.position.x - 23, bulletClone.transform.position.y + 23, bulletClone.transform.position.z);
+            }
+        }
     }
 }

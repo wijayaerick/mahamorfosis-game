@@ -4,34 +4,44 @@ using UnityEngine;
 
 public class PlayerBulletUlti : MonoBehaviour
 {
-    public float maxDistance = 10f;
-    private float distanceTravelled = 0f;
-    private Vector2 lastPosition;
     private Player player;
-    
+    private Animator anim;
+    public int damage;
+    private float timer;
 
     // Use this for initialization
     void Start()
     {
-        lastPosition = transform.position;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        anim = GetComponent<Animator>();
+        
     }
 
     void Update()
     {
-        distanceTravelled += Vector2.Distance(transform.position, lastPosition);
-        lastPosition = transform.position;
-        if (distanceTravelled > maxDistance)
-        {
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 2 && !anim.IsInTransition(0)) {
             Destroy(gameObject);
         }
     }
 
     void OnTriggerEnter2D (Collider2D col)
     {
+        timer = 0;
         if (col.CompareTag("Enemy") || col.CompareTag("Boss"))
         {
             col.SendMessage("Damage", player.damageUlti);
+        }
+    }
+
+    void OnTriggerStay2D (Collider2D col)
+    {
+        timer += Time.deltaTime;
+        if (timer >= 1) {
+            if (col.CompareTag("Enemy") || col.CompareTag("Boss"))
+            {
+                col.SendMessage("Damage", player.damageUlti);
+            }
+            timer = 0;
         }
     }
 }
