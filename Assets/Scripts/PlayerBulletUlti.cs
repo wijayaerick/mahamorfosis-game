@@ -19,7 +19,7 @@ public class PlayerBulletUlti : MonoBehaviour
 
     void Update()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 2 && !anim.IsInTransition(0)) {
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 3 && !anim.IsInTransition(0)) {
             Destroy(gameObject);
         }
     }
@@ -36,7 +36,7 @@ public class PlayerBulletUlti : MonoBehaviour
     void OnTriggerStay2D (Collider2D col)
     {
         timer += Time.deltaTime;
-        if (timer >= 1) {
+        if (timer >= 0.8) {
             if (col.CompareTag("Enemy") || col.CompareTag("Boss"))
             {
                 col.SendMessage("Damage", player.damageUlti);

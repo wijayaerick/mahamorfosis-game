@@ -8,6 +8,7 @@ public class HealthBar : MonoBehaviour {
     private Player player;
     public Slider slider;
     public Image visualHealth;
+    public Text score;
 
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -16,6 +17,7 @@ public class HealthBar : MonoBehaviour {
 	
     void Update () {
         HandleHealth();
+        score.text = Data.finalScore.ToString();
     }
 
     private void HandleHealth() {
