@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour {
 
+    public int damage;
     public float maxDistance = 50f;
     private float distanceTravelled = 0f;
     private Vector2 lastPosition;
@@ -35,7 +36,7 @@ public class BulletController : MonoBehaviour {
             {
                 if (col.CompareTag("Player"))
                 {
-                    col.GetComponent<Player>().Damage(1);
+                    col.GetComponent<Player>().Damage(damage);
                     StartCoroutine(col.GetComponent<Player>().Knockback(0.02f, rb.velocity*10));
                 }
                 Destroy(gameObject);

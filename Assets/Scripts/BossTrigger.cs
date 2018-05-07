@@ -25,6 +25,7 @@ public class BossTrigger : MonoBehaviour {
 			camera.GetComponents<AudioSource>()[0].Play();
 			camera.GetComponent<CameraFollow>().minCameraPos = minCamera;
 			camera.GetComponent<CameraFollow>().maxCameraPos = maxCamera;
+			NoodleBoss.status= 0;
 		}		
 	}
 }

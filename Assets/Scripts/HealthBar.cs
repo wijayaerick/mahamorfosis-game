@@ -35,8 +35,12 @@ public class HealthBar : MonoBehaviour {
     }
 
     private void HandleUlti() {
-        if (player.ulti < 3 && player.ulti >= 0) {
-            ultis[player.ulti].gameObject.SetActive(false);
+        for (int i=0; i<ultis.Length; i++) {
+            if (player.ulti > i) {
+                ultis[i].gameObject.SetActive(true);
+            } else {
+                ultis[i].gameObject.SetActive(false);
+            }
         }
     }
 }

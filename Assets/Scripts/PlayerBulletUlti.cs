@@ -6,7 +6,6 @@ public class PlayerBulletUlti : MonoBehaviour
 {
     private Player player;
     private Animator anim;
-    public int damage;
     private float timer;
 
     // Use this for initialization
@@ -36,7 +35,7 @@ public class PlayerBulletUlti : MonoBehaviour
     void OnTriggerStay2D (Collider2D col)
     {
         timer += Time.deltaTime;
-        if (timer >= 0.8) {
+        if (timer >= 0.1) {
             if (col.CompareTag("Enemy") || col.CompareTag("Boss"))
             {
                 col.SendMessage("Damage", player.damageUlti);
