@@ -65,7 +65,7 @@ abstract public class Enemy : MonoBehaviour {
             float rnd = Random.Range(0.000f, 100.000f);
             if (rnd < itemDropRate) {
                 GameObject clonedItem =  Instantiate(item, transform.position, transform.rotation);
-                clonedItem.GetComponent<ItemHealth>().healthRestored = Random.Range(10, 50);
+                clonedItem.GetComponent<ItemHealth>().healthRestored = Random.Range(10, 25);
             }
             Destroy(gameObject);
             Die();

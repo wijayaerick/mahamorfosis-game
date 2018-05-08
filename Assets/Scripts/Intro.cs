@@ -38,8 +38,6 @@ public class Intro : MonoBehaviour {
 	}
 
 	public void Skip() {
-		texts[index-1].gameObject.SetActive(false);
-		texts[index].gameObject.SetActive(false);
-		index = texts.Length - 1;
+		SceneManager.LoadScene(3);
 	}
 }

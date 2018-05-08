@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
     private Rigidbody2D rb;
     private Animator anim;
     private AudioSource audioJump;
+    private bool lookingRight = true;
 
     void Start ()
     {
@@ -55,6 +56,9 @@ public class Player : MonoBehaviour {
         curHealth = maxHealth;
 
         anim.SetBool("dead", false);
+
+        // fix position
+        transform.position = new Vector3(transform.position.x + 1.6f, transform.position.y, transform.position.z);
 	}
 	
 	void Update ()
@@ -67,13 +71,17 @@ public class Player : MonoBehaviour {
 
         // Handle Player Orientation (Left/Right)
         if (!dead) {
-            if (inputHorizontal < -0.1f)
+            if (inputHorizontal < -0.1f && lookingRight)
             {
+                lookingRight = false;
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                transform.position = new Vector3(transform.position.x - 1.6f, transform.position.y, transform.position.z);
             }
-            if (inputHorizontal > 0.1f)
+            if (inputHorizontal > 0.1f && !lookingRight)
             {
+                lookingRight = true;
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                transform.position = new Vector3(transform.position.x + 1.6f, transform.position.y, transform.position.z);
             }
 
             // Handle Upper Shoot Direction and Duck
@@ -142,15 +150,17 @@ public class Player : MonoBehaviour {
 
     public void Damage(int dmg)
     {
-        gameObject.GetComponent<Animation>().Play("Player_Damaged");
-        if (dmg > curHealth)
-        {
-            curHealth = 0;
-            Die();
-        }
-        else
-        {
-            curHealth -= dmg;
+        if (!win) {
+            gameObject.GetComponent<Animation>().Play("Player_Damaged");
+            if (dmg > curHealth)
+            {
+                curHealth = 0;
+                Die();
+            }
+            else
+            {
+                curHealth -= dmg;
+            }
         }
     }
 

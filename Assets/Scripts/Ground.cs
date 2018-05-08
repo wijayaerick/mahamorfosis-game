@@ -77,7 +77,7 @@ public class Ground : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D coll)
 	{
-		if (coll.gameObject.tag == "Ground")
+		if (coll.gameObject.tag == "Ground" || coll.gameObject.tag == "Spike")
 		{
 			Physics2D.IgnoreCollision(coll.collider, col);
 		}

@@ -10,7 +10,7 @@ public class Level1 : MonoBehaviour {
 	public float time, lastTime;
 	public int score, lastScore;
 	public int money, lastMoney;
-	public Vector2[] checkpoints;
+	public GameObject[] checkpoints;
 
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -18,7 +18,7 @@ public class Level1 : MonoBehaviour {
 		checkpoint = PlayerPrefs.GetInt("checkpoint", -1);
 
 		if (checkpoint != -1) {
-			player.transform.position = checkpoints[checkpoint];
+			player.transform.position = checkpoints[checkpoint].transform.position;
 		}
 	}
 	

@@ -10,6 +10,8 @@ TagManager:
   - Ground
   - Checkpoint
   - Item
+  - Coin
+  - Spike
   layers:
   - Default
   - TransparentFX

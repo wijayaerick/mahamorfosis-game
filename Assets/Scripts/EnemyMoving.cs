@@ -58,4 +58,9 @@ public class EnemyMoving : Enemy {
     {
         base.Die();
     }
+
+    public override void Damage (int damage)
+    {
+        base.Damage(damage);
+    }
 }

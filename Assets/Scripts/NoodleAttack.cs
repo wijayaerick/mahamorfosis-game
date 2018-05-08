@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class NoodleAttack : EnemyMoving
 {
+    private Collider2D myCollider;
     public override void Start()
     {
         base.Start();
+        myCollider = GetComponent<PolygonCollider2D>();
     }
 
     public override void Update()
     {
+        RangeCheck();
+        
         anim.SetBool("stay", true);
         anim.SetBool("down", false);
  
@@ -31,7 +35,7 @@ public class NoodleAttack : EnemyMoving
         }
         if (rb.velocity.x < -maxSpeed)
         {
-            //rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
         }
 
         if (curHealth <= 0)
@@ -42,5 +46,11 @@ public class NoodleAttack : EnemyMoving
             Die();
         }
 
+    }
+
+    public override void Damage (int damage)
+    {
+        base.Damage(damage);
+        
     }
 }
