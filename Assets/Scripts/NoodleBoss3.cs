@@ -27,10 +27,11 @@ public class NoodleBoss3 : Boss
     public override void Update()
     {
         base.Update();
-        if (curHealth < 0)
+        if (curHealth <= 0)
         {
             //Application.LoadLevel(0);
             attack = false;
+            player.win = true;
             Destroy(gameObject);
             Die();
         }

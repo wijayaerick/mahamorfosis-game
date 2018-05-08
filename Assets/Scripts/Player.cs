@@ -70,7 +70,7 @@ public class Player : MonoBehaviour {
         anim.SetBool("doubleJump", isDoubleJumping);
 
         // Handle Player Orientation (Left/Right)
-        if (!dead) {
+        if (!dead && !win) {
             if (inputHorizontal < -0.1f && lookingRight)
             {
                 lookingRight = false;
@@ -135,7 +135,7 @@ public class Player : MonoBehaviour {
         }
 
         // Moving
-        if (!dead) {
+        if (!dead && !win) {
             rb.AddForce(Vector2.right * speed * inputHorizontal);
             if (rb.velocity.x > currMaxSpeed)
             {
@@ -150,7 +150,7 @@ public class Player : MonoBehaviour {
 
     public void Damage(int dmg)
     {
-        if (!win) {
+        if (!dead && !win) {
             gameObject.GetComponent<Animation>().Play("Player_Damaged");
             if (dmg > curHealth)
             {
@@ -199,7 +199,7 @@ public class Player : MonoBehaviour {
                 knockDir.y *= -1;
             }
 
-            if (dead) {
+            if (dead || win) {
                 rb.velocity = Vector3.zero;
             } else {
                 rb.AddForce(new Vector3(transform.position.x + knockDir.x, transform.position.y + knockDir.y, transform.position.z) / 3);

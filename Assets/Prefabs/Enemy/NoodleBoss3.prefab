@@ -135,15 +135,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac17590279d04fc45b8e4ff1cf6a27f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 2000
-  maxHealth: 2000
+  curHealth: 1200
+  maxHealth: 1200
   damage: 5
   speed: 0
   maxSpeed: 0
   minSpeed: 0
   noodleAttack: {fileID: 1562213389076342, guid: c9602de76f0284b448db2d8930dca4b5,
     type: 2}
-  spawnTime: 1
+  spawnTime: 4
   attack: 0
 --- !u!212 &212939849474799250
 SpriteRenderer:

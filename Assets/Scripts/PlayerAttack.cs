@@ -30,7 +30,7 @@ public class PlayerAttack : MonoBehaviour {
 	
 	void Update ()
     {
-        if (!player.dead) {
+        if (!player.dead && !player.win) {
             if (Input.GetButton("Shoot") && !attacking) // Use Input.GetButtonDown for single press (not hold)
             {
                 Shoot();

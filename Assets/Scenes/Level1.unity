@@ -10472,7 +10472,7 @@ Prefab:
     - target: {fileID: 114913813739825480, guid: b7ad717c3935ceb4bbcb4a544ab76706,
         type: 2}
       propertyPath: canFall
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114913813739825480, guid: b7ad717c3935ceb4bbcb4a544ab76706,
         type: 2}
