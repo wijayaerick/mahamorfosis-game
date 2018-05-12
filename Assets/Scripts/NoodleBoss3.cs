@@ -34,6 +34,9 @@ public class NoodleBoss3 : Boss
             player.win = true;
             Destroy(gameObject);
             Die();
+        } else if (curHealth <0.3*maxHealth)
+        {
+            spawnTime -= 1.5f;
         }
         else if (curHealth >= 0.9 * maxHealth)
         {
@@ -68,7 +71,7 @@ public class NoodleBoss3 : Boss
             Vector3 noodlePosition;
             Vector2 direction = new Vector2(0, -1);
             GameObject noodleClone;
-            noodlePosition = new Vector3(transform.localPosition.x -40.0f, transform.localPosition.y+20, 0);
+            noodlePosition = new Vector3(960.0f, 4.6f, 0);
             noodleClone = Instantiate(noodleAttack, noodlePosition, transform.rotation);
         }
 

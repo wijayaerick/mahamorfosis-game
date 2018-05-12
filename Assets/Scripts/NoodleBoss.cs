@@ -6,6 +6,7 @@ public class NoodleBoss : MonoBehaviour {
     public static int status;
     public GameObject noodleBoss2;
     public GameObject noodleBoss3;
+    public GameObject hand;
     //-1=ga munculin apa2
     //0=munculin musuh 2
     //1=munculin musuh 3
@@ -20,7 +21,9 @@ public class NoodleBoss : MonoBehaviour {
         {
             status = -1;
             Vector3 bossPosition;
+            Vector3 handPosition;
             GameObject bossClone;
+            GameObject handClone;
             bossPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
             bossClone = Instantiate(noodleBoss2, bossPosition, transform.rotation);
             
@@ -29,7 +32,7 @@ public class NoodleBoss : MonoBehaviour {
             status = -1;
             Vector3 bossPosition;
             GameObject bossClone;
-            bossPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+            bossPosition = new Vector3(1002.0f, transform.localPosition.y, 0);
             bossClone = Instantiate(noodleBoss3, bossPosition, transform.rotation);
             
         }

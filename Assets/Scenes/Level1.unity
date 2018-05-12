@@ -5978,6 +5978,7 @@ MonoBehaviour:
     type: 2}
   noodleBoss3: {fileID: 1934600717336234, guid: a48127a256705b94bb866b222d5b854a,
     type: 2}
+  hand: {fileID: 0}
 --- !u!4 &144017780
 Transform:
   m_ObjectHideFlags: 0
@@ -5985,7 +5986,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 144017778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1027.2054, y: 10.416163, z: -0.3769208}
+  m_LocalPosition: {x: 1007, y: 10.9, z: -0.3769208}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10564,9 +10565,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -811013991
-  m_SortingLayer: 11
-  m_SortingOrder: 0
+  m_SortingLayerID: 854382185
+  m_SortingLayer: 5
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fa8136e6cb8445848b461b8d0827d5e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -10587,7 +10588,7 @@ PolygonCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -28025,7 +28026,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1402456311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -369.1, y: 4.3, z: 0}
+  m_LocalPosition: {x: -380.9, y: -5, z: 0}
   m_LocalScale: {x: 1.9308288, y: 1.9308296, z: 1.9308296}
   m_Children:
   - {fileID: 1016185739}
@@ -28971,7 +28972,7 @@ Transform:
   m_GameObject: {fileID: 1457867088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 946.9, y: 9.930039, z: -0.296875}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2.249982, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
@@ -28990,7 +28991,7 @@ MonoBehaviour:
   camera: {fileID: 756127971}
   bossMusic: {fileID: 8300000, guid: a493c39e510d1d04b834b77621a668df, type: 3}
   minCamera: {x: 987.2, y: -3, z: -10}
-  maxCamera: {x: 1024, y: 14.8, z: -10}
+  maxCamera: {x: 1000, y: 14.8, z: -10}
 --- !u!251 &1457867092
 PlatformEffector2D:
   m_ObjectHideFlags: 0

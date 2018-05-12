@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curHealth: 0
-  maxHealth: 60
+  maxHealth: 1
   damage: 10
   distance: 0
   wakeRange: 50

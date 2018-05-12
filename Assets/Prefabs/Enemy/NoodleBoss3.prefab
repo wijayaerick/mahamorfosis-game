@@ -143,7 +143,7 @@ MonoBehaviour:
   minSpeed: 0
   noodleAttack: {fileID: 1562213389076342, guid: c9602de76f0284b448db2d8930dca4b5,
     type: 2}
-  spawnTime: 4
+  spawnTime: 3
   attack: 0
 --- !u!212 &212939849474799250
 SpriteRenderer:
