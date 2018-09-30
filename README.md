@@ -2,6 +2,8 @@
 DK4206 Game Design
 
 # Overview
+A platform-based game
+![Game Artwork](https://github.com/wijayaerick/mahamorfosis-game/blob/master/Assets/Graphics/MainMenu/Main_BG_with_TS.jpg "Game Artwork")
 
 # Download
 You can download the latest game from [here](https://github.com/wijayaerick/mahamorfosis-game/releases). 
@@ -24,5 +26,5 @@ You can download the latest game from [here](https://github.com/wijayaerick/maha
 2. [William](https://github.com/sutantowilliam)
 3. [Reinhard L](https://github.com/reinhardlinardi)
 ## Graphic Designer
-1. Jeki
-2. Lupa :(
+1. [Christ Adiel Then](https://www.facebook.com/christ.then)
+2. [Rizky Ramadhan (Jeki)](https://www.artstation.com/re_jeki)
