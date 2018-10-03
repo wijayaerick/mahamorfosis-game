@@ -2,8 +2,10 @@
 DK4206 Game Design
 
 # Overview
-A platform-based game
-![Game Artwork](https://github.com/wijayaerick/mahamorfosis-game/blob/master/Assets/Graphics/MainMenu/Main_BG_with_TS.jpg "Game Artwork")
+A platform-based game. Easy to play. Has a nice graphic thanks to [graphic designer team](https://github.com/wijayaerick/mahamorfosis-game#graphic-designer). 
+
+<br />
+<img src="https://raw.githubusercontent.com/wijayaerick/mahamorfosis-game/master/img/FrontUI.png" alt="Game Artwork" />
 
 # Download
 You can download the latest game from [here](https://github.com/wijayaerick/mahamorfosis-game/releases). 
